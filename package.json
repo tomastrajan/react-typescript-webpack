@@ -1,0 +1,38 @@
+{
+  "name": "react-typescript-webpack",
+  "version": "1.0.0",
+  "description": "Seed for building React app using Typescript and Webpack",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "tsc": "^1.20150623.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^0.5.6",
+    "tsc": "^1.20150623.0",
+    "typescript": "^1.6.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomastrajan/react-typescript-webpack.git"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "typescript",
+    "seed",
+    "flux"
+  ],
+  "author": "Tomas Trajan <tomas.trajan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomastrajan/react-typescript-webpack/issues"
+  },
+  "homepage": "https://github.com/tomastrajan/react-typescript-webpack#readme"
+}
