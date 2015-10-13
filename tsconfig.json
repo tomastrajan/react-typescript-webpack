@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+	  "jsx": "react"
+  },
+  "files": [
+    "typings/react.d.ts",
+    "typings/react-router.d.ts"
+  ]
+}
