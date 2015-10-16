@@ -1,5 +1,6 @@
 import * as React from "react";
-// import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
+import { Router, Route } from 'react-router';
 
 import * as TodoModel from './todo/todo.model';
 import * as TodoService from './todo/todo.service';
@@ -19,7 +20,7 @@ function getState() {
 class TestComponent extends React.Component<TestProps, {}> {
 
     state: any;
-    
+
     constructor(props) {
         super(props);
         this.state = getState();
@@ -59,5 +60,9 @@ class TestComponent extends React.Component<TestProps, {}> {
 
 }
 
-let node = document.getElementById('content');
-React.render(<TestComponent name="Tomas" />, node);
+ReactDOM.render((
+    <Router>
+        <Route path="/" component={TestComponent}>
+        </Route>
+    </Router>
+), document.getElementById('content'));

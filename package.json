@@ -15,7 +15,9 @@
   "dependencies": {
     "lodash": "^3.10.1",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "react-router": "^1.0.0-rc3",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "chalk": "^1.1.1",
