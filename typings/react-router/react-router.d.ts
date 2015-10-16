@@ -71,14 +71,26 @@ declare module ReactRouter {
         path?: string;
         handler?: React.ComponentClass<any>;
         ignoreScrollBehavior?: boolean;
+        component?: React.ComponentClass<any>;
     }
     interface Route extends React.ReactElement<RouteProp> {}
     interface RouteClass extends React.ComponentClass<RouteProp> {}
+
+    // Router
+    interface RouterProp {
+        name?: string;
+        path?: string;
+        handler?: React.ComponentClass<any>;
+        ignoreScrollBehavior?: boolean;
+    }
+    interface Router extends React.ReactElement<RouterProp> {}
+    interface RouterClass extends React.ComponentClass<RouterProp> {}
 
     var DefaultRoute: DefaultRouteClass;
     var NotFoundRoute: NotFoundRouteClass;
     var Redirect: RedirectClass;
     var Route: RouteClass;
+    var Router: RouterClass;
 
     interface CreateRouteOptions {
         name?: string;
@@ -147,33 +159,32 @@ declare module ReactRouter {
     //
     // Top-Level
     // ----------------------------------------------------------------------
-    interface Router extends React.ReactElement<any> {
-        run(callback: RouterRunCallback): void;
-    }
-
-    interface RouterState {
-        path: string;
-        action: string;
-        pathname: string;
-        params: {};
-        query: {};
-        routes: Route[];
-    }
-
-    interface RouterCreateOption {
-        routes: Route;
-        location?: LocationBase;
-        scrollBehavior?: ScrollBehaviorBase;
-        onError?: (error: any) => void;
-        onAbort?: (error: any) => void;
-    }
-
-    type RouterRunCallback = (Handler: RouteClass, state: RouterState) => void;
-
-    function create(options: RouterCreateOption): Router;
-    function run(routes: Route, callback: RouterRunCallback): Router;
-    function run(routes: Route, location: LocationBase | string, callback: RouterRunCallback): Router;
-
+    //interface Router extends React.ReactElement<any> {
+    //    run(callback: RouterRunCallback): void;
+    //}
+    //
+    //interface RouterState {
+    //    path: string;
+    //    action: string;
+    //    pathname: string;
+    //    params: {};
+    //    query: {};
+    //    routes: Route[];
+    //}
+    //
+    //interface RouterCreateOption {
+    //    routes: Route;
+    //    location?: LocationBase;
+    //    scrollBehavior?: ScrollBehaviorBase;
+    //    onError?: (error: any) => void;
+    //    onAbort?: (error: any) => void;
+    //}
+    //
+    //type RouterRunCallback = (Handler: RouteClass, state: RouterState) => void;
+    //
+    //function create(options: RouterCreateOption): Router;
+    //function run(routes: Route, callback: RouterRunCallback): Router;
+    //function run(routes: Route, location: LocationBase | string, callback: RouterRunCallback): Router;
 
     //
     // Location

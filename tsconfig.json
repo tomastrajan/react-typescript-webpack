@@ -11,9 +11,9 @@
     "src/todo/todo.model.ts",
     "src/todo/todo.service.ts",
     "typings/lodash/lodash.d.ts",
+    "typings/react/react.d.ts",
     "typings/react-dom/react-dom.d.ts",
     "typings/react-router/react-router.d.ts",
-    "typings/react/react.d.ts",
     "typings/uuid/uuid.d.ts"
   ],
   "filesGlob": [
