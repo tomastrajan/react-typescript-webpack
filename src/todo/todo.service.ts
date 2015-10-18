@@ -11,3 +11,7 @@ export function createTodo(description: string) {
     };
     model.addTodo(todo);
 }
+
+export function removeTodo(todo: Todo) {
+    model.removeTodo(todo);
+}

@@ -8,8 +8,10 @@
   "files": [
     "src/main.tsx",
     "src/todo/todo.interface.ts",
+    "src/todo/todo.item.tsx",
     "src/todo/todo.model.ts",
     "src/todo/todo.service.ts",
+    "src/common/observable-factory.ts",
     "typings/lodash/lodash.d.ts",
     "typings/react/react.d.ts",
     "typings/react-dom/react-dom.d.ts",

@@ -2,14 +2,12 @@ import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';
 
+import TodoItem from './todo/todo.item';
+
 import * as TodoModel from './todo/todo.model';
 import * as TodoService from './todo/todo.service';
 
 import { Todo } from './todo/todo.interface';
-
-interface TestProps extends React.Props<any> {
-    name: string;
-}
 
 function getState() {
     return {
@@ -17,7 +15,7 @@ function getState() {
     };
 }
 
-class TestComponent extends React.Component<TestProps, {}> {
+class App extends React.Component<{}, {}> {
 
     state: any;
 
@@ -26,28 +24,8 @@ class TestComponent extends React.Component<TestProps, {}> {
         this.state = getState();
     }
 
-    componentDidMount() {
-        TodoModel.addChangeListener(this._onChange.bind(this));
-    }
-
-    componentWillUnmount() {
-        TodoModel.removeChangeListener(this._onChange.bind(this));
-    }
-
-    render() {
-        return(
-            <div>
-                Hello, {this.props.name}
-                ---
-                <ul>
-                {this.state.todos.map(function (todo) {
-                    return <li>{todo.description}</li>;
-                })}
-                </ul>
-                <button onClick={this._handleAddTodo.bind(this, 'test')}>Add Todo</button>
-            </div>
-        );
-    }
+    componentDidMount() { TodoModel.observable.addListener(this._onChange.bind(this)); }
+    componentWillUnmount() { TodoModel.observable.removeListener(this._onChange.bind(this)); }
 
     _handleAddTodo(description: string) {
         TodoService.createTodo(description);
@@ -58,11 +36,36 @@ class TestComponent extends React.Component<TestProps, {}> {
         console.log('_onChange', this.state);
     }
 
+    _editTodo(todo: Todo) {
+        console.log('edit', todo);
+    }
+
+    _removeTodo(todo: Todo) {
+        TodoService.removeTodo(todo);
+    }
+
+    render() {
+        return(
+            <div>
+                Todos WOW ! <button onClick={this._handleAddTodo.bind(this, 'test')}>Add Todo</button>
+                <ul>
+                    {this.state.todos.map((todo) => {
+                        return <TodoItem key={todo.id}
+                                         description={todo.description}
+                                         editTodo={this._editTodo.bind(this, todo)}
+                                         removeTodo={this._removeTodo.bind(this, todo)}
+                               />;
+                    })}
+                </ul>
+            </div>
+        );
+    }
+
 }
 
 ReactDOM.render((
     <Router>
-        <Route path="/" component={TestComponent}>
+        <Route path="/" component={App}>
         </Route>
     </Router>
 ), document.getElementById('content'));
