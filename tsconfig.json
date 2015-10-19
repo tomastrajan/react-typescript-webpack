@@ -9,6 +9,7 @@
     "src/main.tsx",
     "src/todo/todo.interface.ts",
     "src/todo/todo.item.tsx",
+    "src/todo/todo.list.tsx",
     "src/todo/todo.model.ts",
     "src/todo/todo.service.ts",
     "src/common/observable-factory.ts",

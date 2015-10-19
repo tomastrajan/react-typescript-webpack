@@ -65,7 +65,7 @@ module.exports = {
             {test: /\.tsx?$/, loader: 'ts-loader?jsx=true', exclude: /(\.test.ts$|node_modules)/},
             {test: /\.css$/, loader: 'style!css'},
             {test: /\.tpl.html/, loader: 'html'},
-            {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/, loader: 'url?limit=50000'}
+            {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)(\?.+)?$/, loader: 'url?limit=50000'}
         ]
     },
     plugins: [
