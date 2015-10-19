@@ -50,17 +50,23 @@ class App extends React.Component<{}, {}> {
 
     render() {
         return(
-            <div>
-                Todos WOW ! <button onClick={this._handleAddTodo.bind(this, 'test')}>Add Todo</button>
-                <ul>
-                    {this.state.todos.map((todo) => {
-                        return <TodoItem key={todo.id}
-                                         description={todo.description}
-                                         editTodo={this._editTodo.bind(this, todo)}
-                                         removeTodo={this._removeTodo.bind(this, todo)}
-                               />;
-                    })}
-                </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        Todos WOW ! <button onClick={this._handleAddTodo.bind(this, 'test')}>Add Todo</button>
+                    </div>
+                    <div className="col-md-6">
+                        <ul className="list-group">
+                            {this.state.todos.map((todo) => {
+                                return <TodoItem key={todo.id}
+                                                 description={todo.description}
+                                                 editTodo={this._editTodo.bind(this, todo)}
+                                                 removeTodo={this._removeTodo.bind(this, todo)}
+                                       />;
+                            })}
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }

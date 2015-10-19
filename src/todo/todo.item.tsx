@@ -11,13 +11,15 @@ export default class TodoItem extends React.Component<TodoItemProps, {}> {
 
     render() {
         return(
-            <div>
+            <li className="list-group-item">
                 {this.props.description}
-                <button className="btn btn-default" onClick={this.props.editTodo}>Edit</button>
-                <button className="btn btn-danger" onClick={this.props.removeTodo}>
+                <button className="btn btn-danger pull-right" onClick={this.props.removeTodo}>
                     <i className="fa fa-trash-o"></i>
                 </button>
-            </div>
+                <button className="btn btn-default pull-right" onClick={this.props.editTodo}>
+                    <i className="fa fa-pencil"></i>
+                </button>
+            </li>
         );
     }
 
