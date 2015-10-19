@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { Todo } from './todo.interface';
-import MouseEventHandler = __React.MouseEventHandler;
 
 export default class TodoItem extends React.Component<TodoItemProps, {}> {
 
@@ -10,27 +9,40 @@ export default class TodoItem extends React.Component<TodoItemProps, {}> {
     }
 
     render() {
+        let deleteButtonStyle = {
+            color: '#ff0000'
+        }
+        let descriptionStyle = {
+            paddingTop: 4,
+            cursor: 'pointer'
+        }
         return(
-            <li className="list-group-item">
-                {this.props.description}
-                <button className="btn btn-danger pull-right" onClick={this.props.removeTodo}>
-                    <i className="fa fa-trash-o"></i>
-                </button>
-                <button className="btn btn-default pull-right" onClick={this.props.editTodo}>
-                    <i className="fa fa-pencil"></i>
-                </button>
-            </li>
+            <div className="panel panel-default">
+                <div className="panel-body">
+                    <button className="btn btn-link pull-right" style={deleteButtonStyle} onClick={this.props.removeTodo}>
+                        <i className="fa fa-trash-o"></i>
+                    </button>
+                    <button className="btn btn-default pull-right" onClick={this.props.editTodo}>
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                    <div className="checkbox pull-left">
+                        <label>
+                            <input type="checkbox" checked={this.props.done} onClick={this.props.toggleTodo} />
+                        </label>
+                    </div>
+                    <h6 className="noselect" style={descriptionStyle} onClick={this.props.toggleTodo}>{this.props.description}</h6>
+                </div>
+            </div>
         );
     }
 
 }
 
-//.bind(this, this.props.todo.id)
-//<button onClick={this.props.removeTodo.bind(this, this.props.todo.id)}>Remove</button>
-
 interface TodoItemProps {
     key: string;
     description: string;
-    editTodo: MouseEventHandler;
-    removeTodo: MouseEventHandler;
+    done: boolean;
+    toggleTodo: React.MouseEventHandler;
+    editTodo: React.MouseEventHandler;
+    removeTodo: React.MouseEventHandler;
 }

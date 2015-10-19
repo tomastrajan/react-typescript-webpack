@@ -1,12 +1,17 @@
 import * as _ from 'lodash';
+import * as uuid from 'uuid';
 
 import observableFactory from '../common/observable-factory';
 
 import { Todo } from './todo.interface';
 
-const todos: Todo[] = [];
+const todos: Todo[] = [{id: uuid.v4(), description: 'Finish todo example', done: false}];
 
 export const observable = observableFactory();
+
+export function getTodo(id: string): Todo {
+    return _.cloneDeep(_.find(todos, t => t.id === id));
+}
 
 export function getTodos(): Todo[] {
     return _.cloneDeep(todos);
@@ -26,8 +31,8 @@ export function updateTodo(todo: Todo) {
     observable.notifyAll();
 }
 
-export function removeTodo(todo: Todo) {
-    _.remove(todos, t => t.id === todo.id);
+export function removeTodo(id: string) {
+    _.remove(todos, t => t.id === id);
     observable.notifyAll();
 }
 

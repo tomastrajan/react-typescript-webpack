@@ -12,6 +12,17 @@ export function createTodo(description: string) {
     model.addTodo(todo);
 }
 
-export function removeTodo(todo: Todo) {
-    model.removeTodo(todo);
+export function toggleTodo(id: string) {
+    let todo = model.getTodo(id);
+    todo.done = !todo.done;
+    model.updateTodo(todo);
+}
+
+export function removeTodo(id: string) {
+    model.removeTodo(id);
+}
+
+export function removeDoneTodos() {
+    let todos = model.getTodos();
+    _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
 }

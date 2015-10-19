@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "bootswatch": "^3.3.5",
+    "classnames": "^2.2.0",
     "font-awesome": "^4.4.0",
     "lodash": "^3.10.1",
     "react": "^0.14.0",

@@ -76,6 +76,17 @@ declare module ReactRouter {
     interface Route extends React.ReactElement<RouteProp> {}
     interface RouteClass extends React.ComponentClass<RouteProp> {}
 
+    // Route
+    interface IndexRouteProp {
+        name?: string;
+        path?: string;
+        handler?: React.ComponentClass<any>;
+        ignoreScrollBehavior?: boolean;
+        component?: React.ComponentClass<any>;
+    }
+    interface IndexRoute extends React.ReactElement<IndexRouteProp> {}
+    interface IndexRouteClass extends React.ComponentClass<IndexRouteProp> {}
+
     // Router
     interface RouterProp {
         name?: string;
@@ -90,6 +101,7 @@ declare module ReactRouter {
     var NotFoundRoute: NotFoundRouteClass;
     var Redirect: RedirectClass;
     var Route: RouteClass;
+    var IndexRoute: IndexRouteClass;
     var Router: RouterClass;
 
     interface CreateRouteOptions {
