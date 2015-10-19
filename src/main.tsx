@@ -1,3 +1,7 @@
+// Styles
+import 'bootswatch/paper/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+
 import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';

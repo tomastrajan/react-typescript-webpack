@@ -13,8 +13,10 @@ export default class TodoItem extends React.Component<TodoItemProps, {}> {
         return(
             <div>
                 {this.props.description}
-                <button onClick={this.props.editTodo}>Edit</button>
-                <button onClick={this.props.removeTodo}>X</button>
+                <button className="btn btn-default" onClick={this.props.editTodo}>Edit</button>
+                <button className="btn btn-danger" onClick={this.props.removeTodo}>
+                    <i className="fa fa-trash-o"></i>
+                </button>
             </div>
         );
     }
@@ -30,8 +32,3 @@ interface TodoItemProps {
     editTodo: MouseEventHandler;
     removeTodo: MouseEventHandler;
 }
-
-
-
-
-
