@@ -1,5 +1,7 @@
-# React Typescript Webpack FluXXX™ Example
+# React Typescript Webpack FluXXX™ Todo Example
 Seed for building React app using FluXXX™ architecture, Typescript and Webpack build
+
+Check out the [Demo](http://tomastrajan.github.io/react-typescript-webpack/)
 
 ## FluXXX™
 Porn Flux? Or maybe more like naked Flux. I am not buying the whole Flux hype and I think that one guy on [reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/) 
