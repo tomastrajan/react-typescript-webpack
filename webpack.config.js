@@ -6,17 +6,31 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var paramsDefault = {
-    output: {
-        path: './build',
-        filename: '[name].[hash].js',
-        sourceMapFilename: '[name].[hash].map'
+var PARAMS_DEFAULT = {
+    resolve: {
+        extensions: ['', '.ts', '.tsx', '.js']
     },
-    server: {
+    entry: {
+        main: './src/main.tsx'
+    },
+    output: {
+        filename: '[name].[chunkhash].js',
+        sourceMapFilename: '[name].[chunkhash].map'
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            inject: 'body'
+        }),
+        new webpack.optimize.DedupePlugin()
+    ],
+    devServer: {
         port: 8081
-    }
+    },
+    progress: true,
+    colors: true
 };
-var paramsPerTarget = {
+var PARAMS_PER_TARGET = {
     DEV: {
         debug: true,
         devtool: 'inline-source-map',
@@ -26,6 +40,9 @@ var paramsPerTarget = {
     },
     BUILD: {
         debug: true,
+        output: {
+            path: './build'
+        },
         devtool: 'source-map',
         plugins: [
             new CleanWebpackPlugin(['build'])
@@ -45,21 +62,14 @@ var paramsPerTarget = {
     }
 };
 var TARGET = minimist(process.argv.slice(2)).TARGET || 'BUILD';
-var params = _.merge(paramsDefault, paramsPerTarget[TARGET]);
-printBuildInfo();
+var params = _.merge(PARAMS_DEFAULT, PARAMS_PER_TARGET[TARGET], _mergeArraysCustomizer);
+
+_printBuildInfo(params);
 
 module.exports = {
-    resolve: {
-        extensions: ['', '.ts', '.tsx', '.js']
-    },
-    entry: {
-        main: './src/main.tsx'
-    },
-    output: {
-        path: params.output.path,
-        filename: params.output.filename,
-        sourceMapFilename: params.output.sourceMapFilename
-    },
+    resolve: params.resolve,
+    entry: params.entry,
+    output: params.output,
     module: {
         loaders: [
             {test: /\.tsx?$/, loader: 'ts-loader?jsx=true', exclude: /(\.test.ts$|node_modules)/},
@@ -68,31 +78,26 @@ module.exports = {
             {test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)(\?.+)?$/, loader: 'url?limit=50000'}
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            inject: 'body'
-        }),
-        //new webpack.ProvidePlugin({
-        //    $: 'jquery',
-        //    jQuery: 'jquery'
-        //})
-    ].concat(params.plugins || []),
-    devServer: {
-        port: params.server.port
-    },
+    plugins: params.plugins,
+    devServer: params.devServer,
     debug: params.debug,
     devtool: params.devtool,
-    progress: true,
-    colors: true
+    progress: params.progress,
+    colors: params.colors
 };
 
-function printBuildInfo() {
+function _printBuildInfo(params) {
     console.log('\nStarting ' + chalk.bold.green('"' + TARGET + '"') + ' build');
     if (TARGET === 'DEV') {
         console.log('Dev server: ' +
-            chalk.bold.yellow('http://localhost:' + params.server.port + '/webpack-dev-server/index.html') + '\n\n');
+            chalk.bold.yellow('http://localhost:' + params.devServer.port + '/webpack-dev-server/index.html') + '\n\n');
     } else {
         console.log('\n\n');
+    }
+}
+
+function _mergeArraysCustomizer(a, b) {
+    if (_.isArray(a)) {
+        return a.concat(b);
     }
 }
