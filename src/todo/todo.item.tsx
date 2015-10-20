@@ -70,7 +70,7 @@ export default class TodoItem extends React.Component<TodoItemProps, TodoCompone
                         <div className="col-sm-6 col-sx-6">
                             {(() => {
                                 if (this.state.isEdited) {
-                                    return <div className={inputClass}>
+                                    return <div className={inputClass} style={{marginBottom: 0}}>
                                         <input className="form-control" type="text" value={this.state.description} onChange={this.setDescription.bind(this)} />
                                     </div>
                                     } else {

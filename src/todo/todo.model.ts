@@ -5,7 +5,11 @@ import observableFactory from '../common/observable-factory';
 
 import { Todo } from './todo.interface';
 
-const todos: Todo[] = [{id: uuid.v4(), description: 'Finish todo example', done: false}];
+const todos: Todo[] = [
+    {id: uuid.v4(), description: 'Finish todo example', done: true},
+    {id: uuid.v4(), description: 'Add todo persistence', done: false},
+    {id: uuid.v4(), description: 'Add authentication', done: false}
+];
 
 export const observable = observableFactory();
 

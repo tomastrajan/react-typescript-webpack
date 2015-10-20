@@ -12,6 +12,8 @@ This is easily achievable just by using services (check
 [todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts) and 
 [todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts) to get an idea).
 
+![Components](/assets/screenshot.png?raw=true "React Typescript Webpack FluXXX Example")
+
 ### How to
 1. `npm i`
 2. `npm i bootstrap` then copy `bootstrap/dist/fonts` into `bootswatch/` (workaround)
