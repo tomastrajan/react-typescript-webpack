@@ -6,3 +6,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.btn:focus {
+    outline: 0;
+}

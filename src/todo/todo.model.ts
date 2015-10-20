@@ -22,7 +22,7 @@ export function addTodo(todo: Todo) {
     observable.notifyAll();
 }
 
-export function updateTodo(todo: Todo) {
+export function replaceTodo(todo: Todo) {
     _.forEach(todos, (t, index) => {
         if (t.id === todo.id) {
             todos[index] = todo;

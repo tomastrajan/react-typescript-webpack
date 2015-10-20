@@ -15,7 +15,13 @@ export function createTodo(description: string) {
 export function toggleTodo(id: string) {
     let todo = model.getTodo(id);
     todo.done = !todo.done;
-    model.updateTodo(todo);
+    model.replaceTodo(todo);
+}
+
+export function editTodo(id: string, description: string) {
+    let todo = model.getTodo(id);
+    todo.description = description;
+    model.replaceTodo(todo);
 }
 
 export function removeTodo(id: string) {

@@ -36,23 +36,23 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-sm-12">
                         <h2 className="text-center">What do you need to do?</h2>
                         <br />
                         <br />
                     </div>
-                    <div className="col-md-6 col-md-offset-3">
+                    <div className="col-sm-6 col-sm-offset-3">
                         <div className={inputClass}>
                             <label className="control-label">Task description</label>
                             <input className="form-control input-lg" type="text" value={this.state.description} onChange={this.setDescription.bind(this)} />
                         </div>
                     </div>
-                    <div className="col-md-3 col-md-offset-3">
+                    <div className="col-sm-3 col-sm-offset-3">
                         <button className="btn btn-success btn-block" onClick={this.addTodo.bind(this)}>
                             <i className="fa fa-plus"></i> Add Todo
                         </button>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-sm-3">
                         <button className="btn btn-danger btn-block" onClick={this.props.removeDoneTodos.bind(this)}>
                             <i className="fa fa-trash-o"></i> Remove done todos
                         </button>
@@ -63,7 +63,7 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
                 <br />
 
                 <div className="row">
-                    <div className="col-md-6 col-md-offset-3">
+                    <div className="col-sm-6 col-sm-offset-3">
                         <TodoList {...this.props} />
                     </div>
                 </div>

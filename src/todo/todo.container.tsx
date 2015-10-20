@@ -35,8 +35,8 @@ export default class TodoContainer extends React.Component<{}, TodoContainerStat
         TodoService.toggleTodo(id);
     }
 
-    editTodo(todo: Todo) {
-        console.log('edit', todo);
+    editTodo(id: string, description: string) {
+        TodoService.editTodo(id, description);
     }
 
     removeTodo(id: string) {
