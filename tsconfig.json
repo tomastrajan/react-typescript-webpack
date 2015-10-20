@@ -18,6 +18,7 @@
     "src/common/observable-factory.ts",
     "typings/classnames/classnames.d.ts",
     "typings/lodash/lodash.d.ts",
+    "typings/material-ui/material-ui.d.ts",
     "typings/react/react.d.ts",
     "typings/react-dom/react-dom.d.ts",
     "typings/react-router/react-router.d.ts",

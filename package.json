@@ -15,11 +15,18 @@
   "dependencies": {
     "bootswatch": "^3.3.5",
     "classnames": "^2.2.0",
+    "fbjs": "^0.2.1",
     "font-awesome": "^4.4.0",
     "lodash": "^3.10.1",
+    "material-ui": "^0.12.4",
     "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-pure-render-mixin": "^0.14.0",
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
+    "react-tap-event-plugin": "^0.2.0",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
