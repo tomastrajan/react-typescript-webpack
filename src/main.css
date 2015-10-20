@@ -8,5 +8,60 @@
 }
 
 .btn:focus {
-    outline: 0;
+    outline: 0 !important;
+}
+
+.btn:active {
+    outline: 0 !important;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 165px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: auto;
+    background-color: #f5f5f5;
+}
+
+.footer  .container {
+    padding: 15px;
+    text-align: center;
+}
+
+.footer  .container a {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.footer  .container a:hover {
+    text-decoration: none;
+}
+
+.footer .row div {
+    padding: 10px 0px 0px 0px;
+}
+
+
+.todoCounter span {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+}
+
+.todoCounter i {
+    margin-right: 5px;
 }

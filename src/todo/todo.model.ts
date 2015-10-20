@@ -17,6 +17,14 @@ export function getTodos(): Todo[] {
     return _.cloneDeep(todos);
 }
 
+export function getDoneTodos(): number {
+    return _.reduce(todos, (sum, t) => { return t.done ? ++sum : sum; }, 0);
+}
+
+export function getPendingTodos(): number {
+    return _.reduce(todos, (sum, t) => { return !t.done ? ++sum : sum; }, 0);
+}
+
 export function addTodo(todo: Todo) {
     todos.push(todo);
     observable.notifyAll();

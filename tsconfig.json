@@ -10,6 +10,7 @@
     "src/app/app.layout.tsx",
     "src/todo/todo.interface.ts",
     "src/todo/todo.component.tsx",
+    "src/todo/todo.counter.tsx",
     "src/todo/todo.container.tsx",
     "src/todo/todo.item.tsx",
     "src/todo/todo.list.tsx",
