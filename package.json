@@ -4,7 +4,7 @@
   "description": "Seed for building React app using Typescript and Webpack",
   "main": "src/main.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --TARGET=DEV",
+    "start": "webpack-dev-server --inline --hot --TARGET=DEV",
     "build": "webpack --display-chunks --display-reasons --display-error-details --display-modules",
     "dist": "webpack --TARGET=DIST",
     "server_build": "node server.js",
@@ -35,6 +35,7 @@
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.2",
     "minimist": "^1.2.0",
+    "react-hot-loader": "^1.3.0",
     "style-loader": "^0.12.4",
     "svg-loader": "0.0.2",
     "ts-loader": "^0.5.6",
