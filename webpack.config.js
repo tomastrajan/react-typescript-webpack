@@ -14,6 +14,7 @@ var PARAMS_DEFAULT = {
         main: './src/main.tsx'
     },
     output: {
+        publicPath: '/',
         filename: '[name].[chunkhash].js',
         sourceMapFilename: '[name].[chunkhash].map'
     },
@@ -25,6 +26,7 @@ var PARAMS_DEFAULT = {
         new webpack.optimize.DedupePlugin()
     ],
     devServer: {
+        contentBase: 'dev/',
         port: 8081
     },
     progress: true,
