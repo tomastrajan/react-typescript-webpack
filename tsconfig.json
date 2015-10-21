@@ -21,6 +21,7 @@
     "typings/auth0/auth0.d.ts",
     "typings/auth0.lock/auth0.lock.d.ts",
     "typings/classnames/classnames.d.ts",
+    "typings/history/history.d.ts",
     "typings/lodash/lodash.d.ts",
     "typings/material-ui/material-ui.d.ts",
     "typings/react/react.d.ts",

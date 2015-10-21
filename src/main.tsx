@@ -20,7 +20,7 @@ ReactDOM.render((
     <Router>
         <Route path="/" component={AppLayout}>
             <IndexRoute component={TodoContainer}/>
+            <Route path="/todo" component={TodoContainer}/>
         </Route>
-        <Redirect from="*" to="/"/>
     </Router>
 ), document.getElementById('content'));

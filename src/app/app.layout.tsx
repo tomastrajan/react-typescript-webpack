@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Router, Route } from 'react-router';
+import { Link } from 'react-router';
 import { Paper, Avatar } from 'material-ui';
 
 import * as AuthModel from '../auth/auth.model';
@@ -42,9 +42,12 @@ export default class App extends React.Component<AppProps, AppState> {
                 <nav className="navbar navbar-inverse">
                     <div className="container">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="javascript:void(0)">Todo FluXXX™</a>
+                            <Link  className="navbar-brand" to="/">Todo FluXXX™</Link>
                         </div>
 
+                        <ul className="nav navbar-nav">
+                            <li><Link to="/todo">Todo</Link></li>
+                        </ul>
 
                         <ul className="nav navbar-nav navbar-right ">
                             {(() => {

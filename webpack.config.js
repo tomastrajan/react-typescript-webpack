@@ -95,7 +95,7 @@ function _printBuildInfo(params) {
     console.log('\nStarting ' + chalk.bold.green('"' + TARGET + '"') + ' build');
     if (TARGET === 'DEV') {
         console.log('Dev server: ' +
-            chalk.bold.yellow('http://localhost:' + params.devServer.port + '/index.html') + '\n\n');
+            chalk.bold.yellow('http://localhost:' + params.devServer.port) + '\n\n');
     } else {
         console.log('\n\n');
     }

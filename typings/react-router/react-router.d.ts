@@ -93,6 +93,7 @@ declare module ReactRouter {
         path?: string;
         handler?: React.ComponentClass<any>;
         ignoreScrollBehavior?: boolean;
+        history?: any;
     }
     interface Router extends React.ReactElement<RouterProp> {}
     interface RouterClass extends React.ComponentClass<RouterProp> {}
@@ -374,4 +375,11 @@ declare module "react/addons" {
     type: ReactRouter.RouteHandlerClass,
     props: ReactRouter.RouteHandlerProp,
     ...children: __React.ReactNode[]): ReactRouter.RouteHandler;
+}
+
+
+declare var activeComponent: any;
+
+declare module "react-router-active-component" {
+    export = activeComponent;
 }

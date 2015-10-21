@@ -7,13 +7,14 @@ import { Profile } from './auth.interface';
 const Lock = new Auth0Lock('A9xnMR5yCNlOs0HbLB17OeOUZpCYnG4G', 'tomastrajan.eu.auth0.com');
 
 export function login() {
-    console.log(location.href);
-    let options = {
-        authParams: {
-            scope: 'openid profile'
+    let options = {authParams: { scope: 'openid profile' }};
+    Lock.show(options, (err, profile, token) => {
+        if (err) {
+            return console.log(err);
         }
-    };
-    Lock.show(options);
+        localStorage.setItem('id_token', token);
+        model.setProfile(profile as Profile);
+    });
 }
 
 export function logout() {
@@ -23,18 +24,6 @@ export function logout() {
 }
 
 export function init() {
-    getTokenFromHash();
-    loadProfile();
-}
-
-function getTokenFromHash() {
-    var hash = Lock.parseHash(window.location.hash);
-    if (hash && hash.id_token) {
-        localStorage.setItem('id_token', hash.id_token);
-    }
-}
-
-function loadProfile() {
     let token = localStorage.getItem('id_token');
     if (token) {
         Lock.getProfile(token, function (err, profile) {
