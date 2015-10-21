@@ -8,6 +8,7 @@
   "files": [
     "src/main.tsx",
     "src/app/app.layout.tsx",
+    "src/auth/auth.model.ts",
     "src/todo/todo.interface.ts",
     "src/todo/todo.component.tsx",
     "src/todo/todo.counter.tsx",
@@ -17,6 +18,8 @@
     "src/todo/todo.model.ts",
     "src/todo/todo.service.ts",
     "src/common/observable-factory.ts",
+    "typings/auth0/auth0.d.ts",
+    "typings/auth0.lock/auth0.lock.d.ts",
     "typings/classnames/classnames.d.ts",
     "typings/lodash/lodash.d.ts",
     "typings/material-ui/material-ui.d.ts",

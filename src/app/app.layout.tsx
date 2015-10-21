@@ -3,11 +3,16 @@ import { Router, Route } from 'react-router';
 import { Paper } from 'material-ui';
 
 import TodoCounter from '../todo/todo.counter';
+import * as auth from '../auth/auth.model';
 
 export default class App extends React.Component<AppProps, {}> {
 
     constructor(props) {
         super(props);
+    }
+
+    showLogin() {
+        auth.login();
     }
 
     render() {
@@ -18,7 +23,11 @@ export default class App extends React.Component<AppProps, {}> {
                         <div className="navbar-header">
                             <a className="navbar-brand" href="javascript:void(0)">Todo FluXXX™</a>
                         </div>
+
                         <TodoCounter />
+                        <form className="navbar-form navbar-right" role="login">
+                            <button className="btn btn-default" onClick={this.showLogin.bind(this)}>Login</button>
+                        </form>
                     </div>
                 </nav>
                 <div className="container">

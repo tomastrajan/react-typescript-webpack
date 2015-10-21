@@ -64,7 +64,7 @@ export default class TodoItem extends React.Component<TodoItemProps, TodoCompone
                     <div className="row">
                         <div className="col-sm-1 col-xs-2 checkbox">
                             <label>
-                                <input type="checkbox" checked={this.props.done} onClick={this.props.toggleTodo} disabled={this.state.isEdited} />
+                                <input type="checkbox" readOnly={true} checked={this.props.done} onClick={this.props.toggleTodo} disabled={this.state.isEdited} />
                             </label>
                         </div>
                         <div className="col-sm-6 col-sx-6">

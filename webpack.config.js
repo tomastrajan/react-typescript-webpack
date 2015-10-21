@@ -70,6 +70,9 @@ module.exports = {
     resolve: params.resolve,
     entry: params.entry,
     output: params.output,
+    externals: {
+        'auth0-lock': 'Auth0Lock'
+    },
     module: {
         loaders: [
             {test: /\.tsx?$/, loader: 'ts-loader?jsx=true', exclude: /(\.test.ts$|node_modules)/},
