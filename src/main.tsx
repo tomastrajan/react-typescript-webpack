@@ -9,8 +9,12 @@ import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { Router, Route, Redirect, IndexRoute } from 'react-router';
 
+import * as AuthService from './auth/auth.service';
+
 import AppLayout from './app/app.layout';
 import TodoContainer from './todo/todo.container';
+
+AuthService.init();
 
 ReactDOM.render((
     <Router>

@@ -8,7 +8,7 @@
   "files": [
     "src/main.tsx",
     "src/app/app.layout.tsx",
-    "src/auth/auth.model.ts",
+    "src/auth/auth.service.ts",
     "src/todo/todo.interface.ts",
     "src/todo/todo.component.tsx",
     "src/todo/todo.counter.tsx",

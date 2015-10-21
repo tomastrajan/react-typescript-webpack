@@ -1,21 +1,22 @@
-import * as Auth0Lock from 'auth0-lock';
+import * as _ from 'lodash';
 
-const Lock = new Auth0Lock('A9xnMR5yCNlOs0HbLB17OeOUZpCYnG4G', 'tomastrajan.eu.auth0.com');
+import observableFactory from '../common/observable-factory';
 
-export function login() {
-    let options = {
-        authParams: {
-            scope: 'openid profile'
-        }
-    };
-    Lock.show(options, (err, profile, token) => {
-        localStorage.setItem('id_token', token);
-        console.log(err, profile, token)
-    });
+import { Profile } from './auth.interface';
+
+let userProfile: Profile;
+
+export const observable = observableFactory();
+
+export function isAuthenticated(): boolean {
+    return !!userProfile;
 }
 
-export function logout() {
-    Lock.logout(function() {
-        localStorage.setItem('id_token', '');
-    })
+export function getProfile(): Profile {
+    return _.cloneDeep(userProfile);
+}
+
+export function setProfile(profile: Profile) {
+    userProfile = profile;
+    observable.notifyAll();
 }
