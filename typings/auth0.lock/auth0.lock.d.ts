@@ -71,7 +71,7 @@ interface Auth0LockStatic {
     showReset(options: Auth0LockOptions, callback: (error?: Auth0Error) => void) : void;
 
     hide(callback: () => void): void;
-    logout(): void;
+    logout(options: any): void;
 
     parseHash(hash: string): any;
     getProfile(id_token: string, callback: Callback): any;

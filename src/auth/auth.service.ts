@@ -1,3 +1,4 @@
+import * as axios from 'axios';
 import * as Auth0Lock from 'auth0-lock';
 
 import * as model from './auth.model';
@@ -18,9 +19,11 @@ export function login() {
 }
 
 export function logout() {
-    Lock.logout();
-    localStorage.removeItem('id_token');
-    model.setProfile(undefined);
+    return axios.get('https://tomastrajan.eu.auth0.com/v2/logout?federated')
+        .then(function(response) {
+            localStorage.removeItem('id_token');
+            model.setProfile(undefined);
+        });
 }
 
 export function init() {
