@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.7.0",
+    "bluebird": "^2.10.2",
     "bootswatch": "^3.3.5",
     "classnames": "^2.2.0",
     "fbjs": "^0.2.1",

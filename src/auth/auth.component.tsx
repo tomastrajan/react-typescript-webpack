@@ -39,7 +39,7 @@ export default class AuthComponent extends React.Component<{}, AuthState> {
             if (this.state.isAuthenticated) {
                 return <ul className="nav navbar-nav navbar-right ">
                     <li>
-                        <a href="javascript:void(0)" style={{paddingTop:15,paddingBottom:0,paddingRight:0}}>
+                        <a style={{paddingTop:15,paddingBottom:0,paddingRight:0}}>
                             <Avatar src={this.state.profile.picture} />
                         </a>
                     </li>
@@ -49,6 +49,9 @@ export default class AuthComponent extends React.Component<{}, AuthState> {
                 </ul>
             } else {
                 return <ul className="nav navbar-nav navbar-right ">
+                    <li>
+                        <a>Welcome guest!</a>
+                    </li>
                     <li>
                         <Button bsStyle="primary" style={{marginTop:14}} onClick={this.login.bind(this)}>Sign in</Button>
                     </li>
