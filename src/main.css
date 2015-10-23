@@ -54,6 +54,10 @@ body {
 }
 
 
+.todoCounter {
+    padding-bottom: 0px !important;
+}
+
 .todoCounter span {
     color: #ffffff !important;
     font-weight: bold;

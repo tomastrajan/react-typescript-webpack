@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.css';
 // Custom styles
 import './main.css';
 
-import * as React from "react";
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route, Redirect, IndexRoute } from 'react-router';
 

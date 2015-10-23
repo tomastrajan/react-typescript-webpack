@@ -1,39 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 import { Link } from 'react-router';
-import { Paper, Avatar } from 'material-ui';
+import { Paper } from 'material-ui';
 
-import * as AuthModel from '../auth/auth.model';
-import * as AuthService from '../auth/auth.service';
-
+import AuthComponent from '../auth/auth.component';
 import TodoCounter from '../todo/todo.counter';
 
-export default class App extends React.Component<AppProps, AppState> {
+export default class App extends React.Component<AppProps, {}> {
 
     constructor(props) {
         super(props);
-        this.state = this._buildState();
-    }
-
-    componentDidMount() { AuthModel.observable.addListener(this._onModelUpdate.bind(this)); }
-    componentWillUnmount() { AuthModel.observable.removeListener(this._onModelUpdate.bind(this)); }
-
-    _onModelUpdate() {
-        this.setState(this._buildState());
-    }
-
-    _buildState() {
-        return {
-            isAuthenticated: AuthModel.isAuthenticated(),
-            profile: AuthModel.getProfile()
-        }
-    }
-
-    login() {
-        AuthService.login();
-    }
-
-    logout() {
-        AuthService.logout();
     }
 
     render() {
@@ -48,28 +23,7 @@ export default class App extends React.Component<AppProps, AppState> {
                         <ul className="nav navbar-nav">
                             <li><Link to="/todo">Todo</Link></li>
                         </ul>
-
-                        <ul className="nav navbar-nav navbar-right ">
-                            {(() => {
-                                if (this.state.isAuthenticated) {
-                                    return <li className="dropdown">
-                                        <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown" style={{paddingTop:15,paddingBottom:0}} onClick={this.logout.bind(this)}>
-                                            <Avatar src={this.state.profile.picture} />
-                                        </a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="javascript:void(0)" onClick={this.logout.bind(this)}>Logout</a></li>
-                                        </ul>
-                                    </li>
-                                } else {
-                                    return <li>
-                                        <form className="navbar-form navbar-right" role="login">
-                                            <button className="btn btn-default" onClick={this.login.bind(this)}>Login</button>
-                                        </form>
-                                    </li>
-                                }
-                            })()}
-                        </ul>
-
+                        <AuthComponent />
                         <TodoCounter />
                     </div>
                 </nav>
@@ -115,9 +69,4 @@ export default class App extends React.Component<AppProps, AppState> {
 
 interface AppProps {
     children: any
-}
-
-interface AppState {
-    isAuthenticated?: boolean;
-    profile?: any;
 }
