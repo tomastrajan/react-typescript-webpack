@@ -8,6 +8,8 @@
   "files": [
     "src/main.tsx",
     "src/app/app.layout.tsx",
+    "src/auth/auth.component.tsx",
+    "src/auth/auth.model.ts",
     "src/auth/auth.service.ts",
     "src/todo/todo.interface.ts",
     "src/todo/todo.component.tsx",
@@ -27,6 +29,7 @@
     "typings/lodash/lodash.d.ts",
     "typings/material-ui/material-ui.d.ts",
     "typings/react/react.d.ts",
+    "typings/react-bootstrap/react-bootstrap.d.ts",
     "typings/react-dom/react-dom.d.ts",
     "typings/react-router/react-router.d.ts",
     "typings/uuid/uuid.d.ts"
