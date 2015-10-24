@@ -14,7 +14,7 @@ var PARAMS_DEFAULT = {
         main: './src/main.tsx'
     },
     output: {
-        publicPath: '/',
+        publicPath: '',
         filename: '[name].[chunkhash].js',
         sourceMapFilename: '[name].[chunkhash].map'
     },

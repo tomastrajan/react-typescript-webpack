@@ -3,7 +3,7 @@ var connect = require('connect');
 var serveStatic = require('serve-static');
 
 
-var PORT = 8080;
+var PORT = 8082;
 var TARGET_PATH_MAPPING = {
     BUILD: './build',
     DIST: './dist'

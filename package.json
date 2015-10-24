@@ -5,10 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --TARGET=DEV",
-    "build": "webpack --display-chunks --display-reasons --display-error-details --display-modules",
-    "dist": "webpack --TARGET=DIST",
-    "server_build": "node server.js",
-    "server_dist": "node server.js --TARGET=DIST"
+    "build": "webpack --display-chunks --display-reasons --display-error-details --display-modules && node server.js",
+    "dist": "webpack --TARGET=DIST && node server.js --TARGET=DIST"
   },
   "dependencies": {
     "axios": "^0.7.0",
