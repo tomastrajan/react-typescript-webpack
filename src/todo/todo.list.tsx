@@ -21,7 +21,12 @@ export default class TodoList extends React.Component<TodoListProps, {}> {
                                      editTodo={this.props.editTodo.bind(this, todo.id)}
                                      removeTodo={this.props.removeTodo.bind(this, todo.id)}
                            />;
-                    })}
+                })}
+                {(() => {
+                    if (!this.props.todos.length) {
+                        return <p className="text-center" style={{paddingTop:50}}>No todos added yet...</p>
+                    }
+                })()}
             </div>
         );
     }

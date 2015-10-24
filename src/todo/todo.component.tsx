@@ -20,7 +20,7 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
     }
 
     addTodo() {
-        if (!this.state.description.length || this.state.description.length > 25) {
+        if (!this.state.description.length || this.state.description.length > 50) {
             this.setState({valid: false});
         } else {
             this.props.addTodo(this.state.description);
