@@ -152,6 +152,8 @@ declare module Axios {
      * convenience alias, method = PATCH
      */
     patch<T>(url: string, data?: any, config?: AxiosXHRConfigBase<T>): Promise<AxiosXHR<T>>;
+
+    interceptors: any;
   }
 }
 

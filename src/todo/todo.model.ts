@@ -5,11 +5,7 @@ import observableFactory from '../common/observable-factory';
 
 import { Todo } from './todo.interface';
 
-const todos: Todo[] = [
-    {id: uuid.v4(), description: 'Finish todo example', done: true},
-    {id: uuid.v4(), description: 'Add todo persistence', done: false},
-    {id: uuid.v4(), description: 'Add authentication', done: false}
-];
+let todos: Todo[] = [];
 
 export const observable = observableFactory();
 
@@ -27,6 +23,11 @@ export function getDoneTodos(): number {
 
 export function getPendingTodos(): number {
     return _.reduce(todos, (sum, t) => { return !t.done ? ++sum : sum; }, 0);
+}
+
+export function setTodos(newTodos: Todo[]) {
+    todos = _.cloneDeep(newTodos);
+    observable.notifyAll();
 }
 
 export function addTodo(todo: Todo) {

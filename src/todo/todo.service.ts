@@ -1,7 +1,27 @@
 import * as uuid from 'uuid';
+import * as Promise from 'bluebird';
 import * as model from './todo.model';
+import * as persistence from './todo.persistence';
 
 import { Todo } from './todo.interface';
+
+const defaultTodos: Todo[] = [
+    {id: uuid.v4(), description: 'Explore todo example', done: true},
+    {id: uuid.v4(), description: 'Sing in to persist todos to backend', done: false},
+    {id: uuid.v4(), description: 'Check sources on Github', done: false}
+];
+
+let isAuthenticated = false;
+
+export function init(isAuth) {
+    isAuthenticated = isAuth;
+    if (isAuthenticated) {
+        persistence.findAll()
+            .then(todos => model.setTodos(todos));
+    } else {
+        model.setTodos(defaultTodos)
+    }
+}
 
 export function createTodo(description: string) {
     let todo: Todo = {
@@ -9,26 +29,61 @@ export function createTodo(description: string) {
         description: description,
         done: false
     };
-    model.addTodo(todo);
+
+    if (isAuthenticated) {
+        persistence.create(todo)
+            .then(persistence.findAll)
+            .then(todos => model.setTodos(todos));
+    } else {
+        model.addTodo(todo);
+    }
 }
 
 export function toggleTodo(id: string) {
     let todo = model.getTodo(id);
     todo.done = !todo.done;
-    model.replaceTodo(todo);
+
+    if (isAuthenticated) {
+        persistence.update(todo)
+            .then(persistence.findAll)
+            .then(todos => model.setTodos(todos));
+    } else {
+        model.replaceTodo(todo);
+    }
 }
 
 export function editTodo(id: string, description: string) {
     let todo = model.getTodo(id);
     todo.description = description;
-    model.replaceTodo(todo);
+
+    if (isAuthenticated) {
+        persistence.update(todo)
+            .then(persistence.findAll)
+            .then(todos => model.setTodos(todos));
+    } else {
+        model.replaceTodo(todo);
+    }
 }
 
 export function removeTodo(id: string) {
-    model.removeTodo(id);
+    if (isAuthenticated) {
+        persistence.remove(id)
+            .then(persistence.findAll)
+            .then(todos => model.setTodos(todos));
+    } else {
+        model.removeTodo(id);
+    }
 }
 
 export function removeDoneTodos() {
     let todos = model.getTodos();
-    _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
+    if (isAuthenticated) {
+        let promises = [];
+        _.forEach(todos, t => t.done ? promises.push(persistence.remove(t.id)) : undefined);
+        Promise.all(promises)
+            .then(persistence.findAll)
+            .then(todos => model.setTodos(todos));
+    } else {
+        _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
+    }
 }
