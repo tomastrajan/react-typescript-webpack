@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --TARGET=DEV",
-    "build": "webpack --display-chunks --display-reasons --display-error-details --display-modules && node server.js",
+    "build": "webpack && node server.js",
     "dist": "webpack --TARGET=DIST && node server.js --TARGET=DIST"
   },
   "dependencies": {
