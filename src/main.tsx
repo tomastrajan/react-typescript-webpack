@@ -9,17 +9,17 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route, Redirect, IndexRoute } from 'react-router';
 
-import * as AuthService from './auth/auth.service';
+import * as InitAppService from './app/init.app.service';
 
-import AppLayout from './app/app.layout';
+import MainComponent from './main.component';
 import TodoContainer from './todo/todo.container';
 
-AuthService.init().then(renderRouter);
+InitAppService.init().then(renderRouter);
 
 function renderRouter() {
     ReactDOM.render((
         <Router>
-            <Route path="/" component={AppLayout}>
+            <Route path="/" component={MainComponent}>
                 <IndexRoute component={TodoContainer}/>
                 <Route path="/todo" component={TodoContainer}/>
             </Route>

@@ -1,0 +1,19 @@
+.loading {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+
+.loading-overlay {
+    z-index: 1000;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    opacity: 0.3;
+}

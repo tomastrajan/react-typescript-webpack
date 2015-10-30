@@ -24,6 +24,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 250px;
+    padding-top: 70px;
 }
 .footer {
     position: absolute;

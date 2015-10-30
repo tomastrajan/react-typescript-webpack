@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import { Paper } from 'material-ui';
 
-import AuthComponent from '../auth/auth.component';
-import TodoCounter from '../todo/todo.counter';
+import AuthComponent from './auth/auth.component';
+import TodoCounter from './todo/todo.counter';
+import LoadingComponent from './common/loading.component';
 
-export default class App extends React.Component<AppProps, {}> {
+export default class MainComponent extends React.Component<MainComponentProps, {}> {
 
     constructor(props) {
         super(props);
@@ -14,7 +15,7 @@ export default class App extends React.Component<AppProps, {}> {
     render() {
         return(
             <div>
-                <nav className="navbar navbar-inverse">
+                <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header">
                             <Link  className="navbar-brand" to="/">Todo FluXXX™</Link>
@@ -22,12 +23,14 @@ export default class App extends React.Component<AppProps, {}> {
 
                         <ul className="nav navbar-nav">
                             <li><Link to="/todo">Todo</Link></li>
+                            <li><Link to="/about">About</Link></li>
                         </ul>
                         <AuthComponent />
                         <TodoCounter />
                     </div>
                 </nav>
                 <div className="container">
+                    <LoadingComponent />
                     {this.props.children}
                 </div>
                 <footer className="footer">
@@ -67,6 +70,6 @@ export default class App extends React.Component<AppProps, {}> {
 
 }
 
-interface AppProps {
+interface MainComponentProps {
     children: any
 }

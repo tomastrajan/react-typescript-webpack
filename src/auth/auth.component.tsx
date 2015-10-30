@@ -3,7 +3,7 @@ import { Avatar } from 'material-ui';
 import { Button, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import * as AuthModel from './auth.model';
-import * as AuthService from './auth.service';
+import * as AuthAppService from '../app/auth.app.service';
 
 export default class AuthComponent extends React.Component<{}, AuthState> {
 
@@ -27,15 +27,15 @@ export default class AuthComponent extends React.Component<{}, AuthState> {
     }
 
     login() {
-        AuthService.login();
+        AuthAppService.login();
     }
 
     logout() {
-        AuthService.logout();
+        AuthAppService.logout();
     }
 
     render() {
-        let component = (() => {
+        return ((() => {
             if (this.state.isAuthenticated) {
                 return <ul className="nav navbar-nav navbar-right ">
                     <li>
@@ -57,8 +57,7 @@ export default class AuthComponent extends React.Component<{}, AuthState> {
                     </li>
                 </ul>
             }
-        })();
-        return component;
+        })());
     }
 
 }

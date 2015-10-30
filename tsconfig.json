@@ -7,7 +7,8 @@
   },
   "files": [
     "src/main.tsx",
-    "src/app/app.layout.tsx",
+    "src/app/auth.app.service.ts",
+    "src/app/init.app.service.ts",
     "src/auth/auth.component.tsx",
     "src/auth/auth.interceptor.ts",
     "src/auth/auth.model.ts",
@@ -22,6 +23,8 @@
     "src/todo/todo.persistence.ts",
     "src/todo/todo.service.ts",
     "src/common/observable-factory.ts",
+    "src/common/loading.component.tsx",
+    "src/common/loading.interceptor.ts",
     "typings/axios/axios.d.ts",
     "typings/auth0/auth0.d.ts",
     "typings/auth0.lock/auth0.lock.d.ts",
