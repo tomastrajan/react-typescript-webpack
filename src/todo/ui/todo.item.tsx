@@ -33,7 +33,6 @@ export default class TodoItem extends React.Component<TodoItemProps, TodoCompone
 
     saveTodo() {
         if (!this.state.description.length || this.state.description.length > 50) {
-            this.props.editTodo(this.state.description);
             this.setState({ valid: false });
         } else {
             this.props.editTodo(this.state.description);
@@ -53,11 +52,11 @@ export default class TodoItem extends React.Component<TodoItemProps, TodoCompone
         let deleteButtonStyle = {
             color: '#ff0000',
             marginLeft: 5
-        }
+        };
         let descriptionStyle = {
             paddingTop: 4,
             cursor: 'pointer'
-        }
+        };
         return(
             <div className="panel panel-default">
                 <div className="panel-body">
