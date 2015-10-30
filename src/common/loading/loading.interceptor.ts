@@ -23,17 +23,23 @@ export function registerLoadingInterceptor() {
     });
 
     responseLoadingInterceptor = axios.interceptors.response.use(function (response) {
-        outstandingRequestCount--;
-        observable.notifyAll();
+        _decrementOutstandingRequestCount();
         return response;
     }, function (error) {
-        outstandingRequestCount--;
-        observable.notifyAll();
+        _decrementOutstandingRequestCount();
         return Promise.reject(error);
     });
+
 }
 
 export function deregisterLoadingInterceptor() {
     axios.interceptors.request.eject(requestLoadingInterceptor);
     axios.interceptors.request.eject(responseLoadingInterceptor);
+}
+
+function _decrementOutstandingRequestCount() {
+    setTimeout(() => {
+        outstandingRequestCount--;
+        observable.notifyAll();
+    });
 }
