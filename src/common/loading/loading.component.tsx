@@ -3,7 +3,7 @@ import './loading.component.css';
 import * as React from 'react';
 import { CircularProgress } from 'material-ui';
 
-import * as LoadingInterceptor from './loading.interceptor';
+import * as LoadingInterceptor from './loading.interceptor.ts';
 
 export default class LoadingComponent extends React.Component<{}, { isLoading: boolean; }> {
 

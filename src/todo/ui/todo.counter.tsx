@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as TodoModel from '../todo/todo.model';
+import * as TodoModel from '../todo.model.ts';
 
-import { Todo } from '../todo/todo.interface';
+import { Todo } from '../todo.interface.ts';
 
 export default class TodoCounter extends React.Component<{}, TodoCounterState> {
 
@@ -26,13 +26,33 @@ export default class TodoCounter extends React.Component<{}, TodoCounterState> {
     }
 
     render() {
+        let containerStyle = {
+            paddingBottom: 0
+        };
+
+        let valueStyle = {
+            color: '#fff',
+            fontWeight: 'bold',
+            fontSize: 20,
+            position: 'relative',
+            top: 2
+        };
+
+        let iconStyle = {
+            marginRight: 5
+        };
+
         return(
             <ul className="nav navbar-nav navbar-right ">
                 <li>
-                    <a className="todoCounter"><i className="fa fa-check"></i> <span>{this.state.doneTodos}</span></a>
+                    <a style={containerStyle}>
+                        <i className="fa fa-check" style={iconStyle}></i> <span style={valueStyle}>{this.state.doneTodos}</span>
+                    </a>
                 </li>
                 <li>
-                    <a className="todoCounter"><i className="fa fa-square-o"></i> <span>{this.state.pendingTodos}</span></a>
+                    <a style={containerStyle}>
+                        <i className="fa fa-square-o"></i> <span style={valueStyle}>{this.state.pendingTodos}</span>
+                    </a>
                 </li>
             </ul>
         );

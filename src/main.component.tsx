@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import { Paper } from 'material-ui';
 
-import AuthComponent from './auth/auth.component';
-import TodoCounter from './todo/todo.counter';
-import LoadingComponent from './common/loading.component';
+import AuthComponent from './auth/ui/auth.component.tsx';
+import TodoCounter from './todo/ui/todo.counter.tsx';
+import LoadingComponent from './common/loading/loading.component.tsx';
 
-export default class MainComponent extends React.Component<MainComponentProps, {}> {
+export default class MainComponent extends React.Component<{ children: any }, {}> {
 
     constructor(props) {
         super(props);
@@ -23,7 +23,6 @@ export default class MainComponent extends React.Component<MainComponentProps, {
 
                         <ul className="nav navbar-nav">
                             <li><Link to="/todo">Todo</Link></li>
-                            <li><Link to="/about">About</Link></li>
                         </ul>
                         <AuthComponent />
                         <TodoCounter />
@@ -68,8 +67,4 @@ export default class MainComponent extends React.Component<MainComponentProps, {
         );
     }
 
-}
-
-interface MainComponentProps {
-    children: any
 }

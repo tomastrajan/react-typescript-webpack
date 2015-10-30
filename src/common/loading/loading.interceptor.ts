@@ -1,7 +1,7 @@
 import * as Promise from 'bluebird';
 import * as axios from 'axios';
 
-import observableFactory from '../common/observable-factory';
+import observableFactory from '../observable-factory';
 
 let requestLoadingInterceptor;
 let responseLoadingInterceptor;

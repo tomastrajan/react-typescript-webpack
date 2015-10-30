@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import TodoComponent from './todo.component';
+import TodoComponent from './todo.component.tsx';
 
-import * as TodoModel from './todo.model';
-import * as TodoService from './todo.service';
+import * as TodoModel from './../todo.model.ts';
+import * as TodoService from './../todo.service.ts';
 
-import { Todo } from './todo.interface';
+import { Todo } from './../todo.interface.ts';
 
 export default class TodoContainer extends React.Component<{}, TodoContainerState> {
 

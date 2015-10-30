@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import TodoItem from './todo.item';
+import TodoItem from './todo.item.tsx';
 
-import { Todo } from './todo.interface';
+import { Todo } from './../todo.interface.ts';
 
 export default class TodoList extends React.Component<TodoListProps, {}> {
 

@@ -1,8 +1,5 @@
-// Styles
 import 'bootswatch/paper/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-
-// Custom styles
 import './main.css';
 
 import * as React from 'react';
@@ -12,7 +9,7 @@ import { Router, Route, Redirect, IndexRoute } from 'react-router';
 import * as InitAppService from './app/init.app.service';
 
 import MainComponent from './main.component';
-import TodoContainer from './todo/todo.container';
+import TodoContainer from './todo/ui/todo.container.tsx';
 
 InitAppService.init().then(renderRouter);
 

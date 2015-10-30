@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Avatar } from 'material-ui';
 import { Button, NavDropdown, MenuItem } from 'react-bootstrap';
 
-import * as AuthModel from './auth.model';
-import * as AuthAppService from '../app/auth.app.service';
+import * as AuthModel from './../auth.model.ts';
+import * as AuthAppService from '../../app/auth.app.service.ts';
 
 export default class AuthComponent extends React.Component<{}, AuthState> {
 

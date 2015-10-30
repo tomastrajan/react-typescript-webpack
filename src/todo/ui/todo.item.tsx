@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as classNames from 'classnames';
 
-import { Todo } from './todo.interface';
+import { Todo } from './../todo.interface.ts';
 
 export default class TodoItem extends React.Component<TodoItemProps, TodoComponentState> {
 
