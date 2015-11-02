@@ -18,7 +18,7 @@ export default class MainComponent extends React.Component<{ children: any }, {}
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header">
-                            <Link  className="navbar-brand" to="/">Todo FluXXX™</Link>
+                            <Link  className="navbar-brand" to="/">Todo FLUXless</Link>
                         </div>
 
                         <ul className="nav navbar-nav">

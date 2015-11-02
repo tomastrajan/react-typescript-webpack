@@ -14,7 +14,7 @@ This is a simple Todos application with some sweet extra features like authentic
 
 ## Preview 
 
-![Components](/assets/screenshot.png?raw=true "React Typescript Webpack FLUXless Example")
+![Components](/assets/screenshot1.png?raw=true "React Typescript Webpack FLUXless Example")
 
 ## Motivation for FLUXless architecture
 In software development, we should strive to attain deeper understanding of concepts instead of falling for the  everchanging `HypeOfTheMonth`. I was a bit skeptical about the latest Flux hype and all the different libraries it spawned during relatively short period of time. Reasearching the topic brought fruit pretty quickly. In my oppinion, this guy on [reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/) described the situation perfectly.
