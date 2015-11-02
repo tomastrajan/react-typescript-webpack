@@ -32,10 +32,23 @@ As it turned out, this is easily achievable just by using services (check
 ### Architecture
 The main concept at the core of all Flux implementations is that the data must always flow in one direction. This is a worthy cause and it brings a lot of benefits to the table during development and maintenance of projects. With such an architecure project state becomes predictable, easier to reason about and debug. 
 
+
+#### React components
 ...
 
+#### Services
+...
 
-### How to run
+#### Application services
+...
+
+#### Models
+...
+
+#### Propagating model changes back to React components
+...
+
+### How to run the project
 1. `npm i`
 2. `npm i bootstrap` then copy `bootstrap/dist/fonts` into `bootswatch/` (workaround)
 3. `npm start`
