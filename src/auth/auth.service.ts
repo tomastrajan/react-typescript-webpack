@@ -48,6 +48,7 @@ export function init() {
                     return reject(err);
                 }
                 interceptor.registerUserInterceptor(profile.user_id);
+                interceptor.registerUnauthorizedInterceptor(logout);
                 model.setProfile(profile as Profile);
                 resolve();
             });

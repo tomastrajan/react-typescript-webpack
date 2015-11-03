@@ -3,6 +3,7 @@ import * as axios from 'axios';
 
 let authTokenInterceptor;
 let userInterceptor;
+let unauthorizedInterceptor;
 
 export function registerAuthTokenInterceptor(token) {
     authTokenInterceptor = axios.interceptors.request.use(function (config) {
@@ -31,3 +32,19 @@ export function registerUserInterceptor(userId) {
 export function deregisterUserInterceptor() {
     axios.interceptors.request.eject(userInterceptor);
 }
+
+export function registerUnauthorizedInterceptor(handler) {
+    unauthorizedInterceptor = axios.interceptors.response.use(function (response) {
+        return response;
+    }, function (error) {
+        if (error && error.status === 401) {
+            handler();
+        }
+        return Promise.reject(error);
+    });
+}
+
+export function deregisterUnauthorizedInterceptor() {
+    axios.interceptors.request.eject(unauthorizedInterceptor);
+}
+
