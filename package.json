@@ -7,15 +7,17 @@
     "start": "webpack-dev-server --inline --hot --TARGET=DEV",
     "build": "webpack && node server.js",
     "dist": "webpack --TARGET=DIST && node server.js --TARGET=DIST",
-	"ci": "webpack"
+    "ci": "webpack"
   },
   "dependencies": {
     "axios": "^0.7.0",
     "bluebird": "^2.10.2",
     "bootswatch": "^3.3.5",
     "classnames": "^2.2.0",
+    "deep-equal": "^1.0.1",
     "fbjs": "^0.2.1",
     "font-awesome": "^4.4.0",
+    "history": "^1.13.0",
     "lodash": "^3.10.1",
     "material-ui": "^0.12.4",
     "react": "^0.14.0",
@@ -26,7 +28,8 @@
     "react-bootstrap": "^0.27.2",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
-    "react-tap-event-plugin": "^0.2.0",
+    "react-tap-event-plugin": "^0.2.1",
+    "ua-parser-js": "^0.7.9",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
