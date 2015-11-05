@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --hot --TARGET=DEV",
     "build": "webpack && node server.js",
-    "dist": "webpack --TARGET=DIST && node server.js --TARGET=DIST"
+    "dist": "webpack --TARGET=DIST && node server.js --TARGET=DIST",
 	"ci": "webpack"
   },
   "dependencies": {
