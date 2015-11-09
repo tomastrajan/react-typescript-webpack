@@ -1,4 +1,4 @@
-# React Typescript Webpack *FLUXless* Todo Example
+# React Typescript Webpack *FLUXless* Todo Example [![Build Status](https://travis-ci.org/tomastrajan/react-typescript-webpack.svg)](https://travis-ci.org/tomastrajan/react-typescript-webpack)
 Seed for building React app using *FLUXless* architecture, Typescript and Webpack build
 
 Check out the [Demo](http://tomastrajan.github.io/react-typescript-webpack/)
