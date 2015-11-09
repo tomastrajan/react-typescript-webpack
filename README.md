@@ -11,6 +11,7 @@ This is a simple Todos application with some sweet extra features like authentic
 * **guest mode** - local storage pesistence
 * **FLUXless architecture** - simple one way data flow (just components, services, models)
 * **material design** - material-ui, react-bootstrap, material bootswatch theme
+* **continuous deployment** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
 
 ## Preview 
 
