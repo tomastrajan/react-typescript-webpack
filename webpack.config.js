@@ -37,7 +37,7 @@ var DEFAULT_PARAMS = {
             inject: 'body'
         }),
         new webpack.optimize.DedupePlugin()
-    ],
+    ].concat(_bootswatchWorkaround()),
     devServer: {
         contentBase: 'dev/',
         port: 8081
@@ -110,4 +110,14 @@ function _mergeArraysCustomizer(a, b) {
     if (_.isArray(a)) {
         return a.concat(b);
     }
+}
+
+function _bootswatchWorkaround() {
+	var extensions = ['eot', 'woff', 'woff2', 'ttf', 'svg'];
+	
+	return extensions.map(function(ext) {
+		var regexp = new RegExp('\.\.\/fonts\/glyphicons-halflings-regular\.' + ext + '$');
+		var dest = 'bootswatch/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.' + ext;
+		return new webpack.NormalModuleReplacementPlugin(regexp, dest);
+	});
 }

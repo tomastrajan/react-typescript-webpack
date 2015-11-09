@@ -50,5 +50,4 @@ The main concept at the core of all Flux implementations is that the data must a
 
 ### How to run the project
 1. `npm i`
-2. `npm i bootstrap` then copy `bootstrap/dist/fonts` into `bootswatch/` (workaround)
-3. `npm start`
+2. `npm start`
