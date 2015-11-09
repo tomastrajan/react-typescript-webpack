@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "4.1"
-script: 
+script:
+  - bash cp -rf ./node_modules/bootswatch/bower_components/bootstrap/dist/fonts/ ./node_modules/bootswatch/ #workaround
   - npm run ci
   - bash ./.travis-deploy.sh
