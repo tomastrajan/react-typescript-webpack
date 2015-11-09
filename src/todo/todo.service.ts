@@ -17,7 +17,8 @@ export function init(isAuth) {
     isAuthenticated = isAuth;
     if (isAuthenticated) {
         persistence.findAll()
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         model.setTodos(defaultTodos)
     }
@@ -33,7 +34,8 @@ export function createTodo(description: string) {
     if (isAuthenticated) {
         persistence.create(todo)
             .then(persistence.findAll)
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         model.addTodo(todo);
     }
@@ -46,7 +48,8 @@ export function toggleTodo(id: string) {
     if (isAuthenticated) {
         persistence.update(todo)
             .then(persistence.findAll)
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         model.replaceTodo(todo);
     }
@@ -59,7 +62,8 @@ export function editTodo(id: string, description: string) {
     if (isAuthenticated) {
         persistence.update(todo)
             .then(persistence.findAll)
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         model.replaceTodo(todo);
     }
@@ -69,7 +73,8 @@ export function removeTodo(id: string) {
     if (isAuthenticated) {
         persistence.remove(id)
             .then(persistence.findAll)
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         model.removeTodo(id);
     }
@@ -82,8 +87,22 @@ export function removeDoneTodos() {
         _.forEach(todos, t => t.done ? promises.push(persistence.remove(t.id)) : undefined);
         Promise.all(promises)
             .then(persistence.findAll)
-            .then(todos => model.setTodos(todos));
+            .then(_sortTodosByCreatedAt)
+            .then(model.setTodos);
     } else {
         _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
     }
+}
+
+
+function _sortTodosByCreatedAt(todos) {
+    return todos.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+            return 1;
+        }
+        if (a.createdAt < b.createdAt) {
+            return -1;
+        }
+        return 0;
+    });
 }
