@@ -33,14 +33,23 @@ As it turned out, this is easily achievable just by using services (check
 ### Architecture
 The main concept at the core of all Flux implementations is that the data must always flow in one direction. This is a worthy cause and it brings a lot of benefits to the table during development and maintenance of projects. With such an architecure project state becomes predictable, easier to reason about and debug. 
 
-
+## UI
 #### React components
-...
+UI is implemented using React components...
 
-#### Services
+#### Container components
+Container components are React components which hold state and register listeners to models to call `setState` on model update. They implement logic which calls coresponding domain services and app.services Their template consist purely of other React components (no layout or functionality). State and functionality is then passed to child components through props.
+
+#### Simple components
+
+## Logic
+#### Domain separation
 ...
 
 #### Application services
+...
+
+#### Services
 ...
 
 #### Models
