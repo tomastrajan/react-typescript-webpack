@@ -5,6 +5,7 @@ var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 
 var DEFAULT_TARGET = 'BUILD';
 
@@ -53,7 +54,10 @@ var PARAMS_PER_TARGET = {
         devtool: 'inline-source-map',
         output: {
             filename: '[name].js'
-        }
+        },
+        plugins: [
+            new OpenBrowserWebpackPlugin({ url: 'http://localhost:8081/' })
+        ]
     },
 
     BUILD: {
