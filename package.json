@@ -16,6 +16,7 @@
     "classnames": "2.2.0",
     "fbjs": "0.2.1",
     "font-awesome": "4.4.0",
+    "history": "^1.13.1",
     "lodash": "3.10.1",
     "material-ui": "0.13.1",
     "react": "0.14.2",
