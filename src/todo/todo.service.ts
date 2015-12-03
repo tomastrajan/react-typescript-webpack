@@ -2,6 +2,7 @@ import * as uuid from 'uuid';
 import * as Promise from 'bluebird';
 import * as model from './todo.model';
 import * as persistence from './todo.persistence';
+import * as persistenceLs from './todo.persistence-ls';
 
 import { Todo } from './todo.interface';
 
@@ -20,7 +21,8 @@ export function init(isAuth) {
             .then(_sortTodosByCreatedAt)
             .then(model.setTodos);
     } else {
-        model.setTodos(defaultTodos)
+        let todosLs = persistenceLs.getTodos();
+        model.setTodos(todosLs.length ? todosLs : defaultTodos);
     }
 }
 
@@ -38,6 +40,7 @@ export function createTodo(description: string) {
             .then(model.setTodos);
     } else {
         model.addTodo(todo);
+        persistenceLs.setTodos(model.getTodos());
     }
 }
 
@@ -52,6 +55,7 @@ export function toggleTodo(id: string) {
             .then(model.setTodos);
     } else {
         model.replaceTodo(todo);
+        persistenceLs.setTodos(model.getTodos());
     }
 }
 
@@ -66,6 +70,7 @@ export function editTodo(id: string, description: string) {
             .then(model.setTodos);
     } else {
         model.replaceTodo(todo);
+        persistenceLs.setTodos(model.getTodos());
     }
 }
 
@@ -77,6 +82,7 @@ export function removeTodo(id: string) {
             .then(model.setTodos);
     } else {
         model.removeTodo(id);
+        persistenceLs.setTodos(model.getTodos());
     }
 }
 
@@ -91,6 +97,7 @@ export function removeDoneTodos() {
             .then(model.setTodos);
     } else {
         _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
+        persistenceLs.setTodos(model.getTodos());
     }
 }
 

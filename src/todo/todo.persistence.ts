@@ -3,7 +3,7 @@ import * as axios from 'axios';
 import { Todo } from './todo.interface';
 
 const SERVER = 'https://todos-server.herokuapp.com';
-const RESOURCE = '/todos'
+const RESOURCE = '/todos';
 
 export function findAll() {
     return axios.get<Todo[]>(SERVER + RESOURCE).

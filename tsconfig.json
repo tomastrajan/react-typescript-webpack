@@ -21,6 +21,7 @@
     "src/todo/ui/todo.list.tsx",
     "src/todo/todo.model.ts",
     "src/todo/todo.persistence.ts",
+    "src/todo/todo.persistence-ls.ts",
     "src/todo/todo.service.ts",
     "src/common/observable-factory.ts",
     "src/common/loading/loading.component.tsx",
