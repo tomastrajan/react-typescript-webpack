@@ -18,20 +18,41 @@ This is a simple Todos application with some sweet extra features like authentic
 ![Components](/assets/screenshot1.png?raw=true "React Typescript Webpack FLUXless Example")
 
 ## Motivation for FLUXless architecture
-In software development, we should strive to attain deeper understanding of concepts instead of falling for the  everchanging `HypeOfTheMonth`. I was a bit skeptical about the latest Flux hype and all the different libraries it spawned during relatively short period of time. Reasearching the topic brought fruit pretty quickly. In my oppinion, this guy on [reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/) described the situation perfectly.
+In software development, we should strive to attain deeper understanding of
+concepts instead of falling for the  everchanging `HypeOfTheMonth`. I was a bit
+skeptical about the latest Flux hype and all the different libraries it spawned
+during relatively short period of time. Reasearching the topic brought fruit
+pretty quickly. In my oppinion, this thread on [reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/)
+contains lot of insight into the situation.
 
 
 > TLDR; MVC done incorrectly doesn't scale so we replaced it with MVC done correctly and gave it a cooler name.
 
+or
+
+> As far as I can tell (and as others have said) - FB seems to have missed the boat here. Their FLUX diagram is what I understood proper MVC to be...
+
 
 That means Flux in fact is a implementation of MVC and the main point (or constraint) is that the data should flow **ALWAYS** in one direction.
-As it turned out, this is easily achievable just by using services (check 
-[todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts) and 
-[todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts) to get an idea). 
+The basic gist of it is that the Flux is enforcing this direction by decoupling of all logic calls
+(in `Actions`) by event bus (`Dispatcher`) from their execution (in `Stores`).
+As it turned out, this is easily achievable just by using services (check
+[todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts) and
+[todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts) to get an idea).
 
 
 ### Architecture
-The main concept at the core of all Flux implementations is that the data must always flow in one direction. This is a worthy cause and it brings a lot of benefits to the table during development and maintenance of projects. With such an architecure project state becomes predictable, easier to reason about and debug. 
+The main concept at the core of all Flux implementations is that the data must always flow
+in one direction. This is a worthy cause and it brings a lot of benefits to the table
+during development and maintenance of projects. With such an architecure project state
+becomes predictable, easier to reason about and debug.
+
+##### Event bus vs explicit calls
+As everything `events` come with a trade-off. They enforce decoupling by their very nature
+but the cost is that it is usually much harder to track and debug event-heavy code
+using development tools. Yes you get complete history of what happened but
+ you lose ability to easily comprehend scope of ll the logic that will be executed as
+ a result of producing such event.
 
 ## UI
 #### React components
@@ -53,7 +74,11 @@ Container components are React components which hold state and register listener
 ...
 
 #### Models
-...
+Models (~`Stores`) are responsible for holding app state during it's runtime. They implement
+observe/notify design pattern so that all interested `container components` can use model's
+`addListener` method to register callback to be notified when the model data change.
+This implementation enforces **one way data flow**.
+Model has full control of the (possibly custom) notification behaviour.
 
 #### Propagating model changes back to React components
 ...
