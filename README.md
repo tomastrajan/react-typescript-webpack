@@ -11,7 +11,7 @@ This is a simple Todos application with some sweet extra features like authentic
 * **guest mode** - local storage pesistence
 * **FLUXless architecture** - simple one way data flow (just components, services, models)
 * **material design** - material-ui, react-bootstrap, material bootswatch theme
-* **continuous deployment** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
+* **[continuous deployment](https://medium.com/@tomastrajan/continuous-deployment-of-client-side-apps-with-github-pages-travis-ci-10e9d641a889)** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
 
 ## Preview 
 
@@ -62,6 +62,9 @@ UI is implemented using React components...
 Container components are React components which hold state and register listeners to models to call `setState` on model update. They implement logic which calls coresponding domain services and app.services Their template consist purely of other React components (no layout or functionality). State and functionality is then passed to child components through props.
 
 #### Simple components
+Simple components receive all their data and actions through properties (from parent component).
+They may implement their own local `state` and logic used for UI interaction but
+this `state` must have no influence on real application state stored in models.
 
 ## Logic
 #### Domain separation
@@ -71,7 +74,11 @@ Container components are React components which hold state and register listener
 ...
 
 #### Services
-...
+Services (~`Actions` / `Stores`) are used to implement domain specific business and
+infrastructure logic. Services of particular domain can `import` only other services
+belonging to that domain. All inter-domain orchestration must be implemented using
+`application services`. Logic can be separated into multiple services based on concern
+(eg: business logic, persistence, ...).
 
 #### Models
 Models (~`Stores`) are responsible for holding app state during it's runtime. They implement
