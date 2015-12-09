@@ -5,6 +5,8 @@ import TodoList from './todo.list.tsx';
 
 import { Todo } from './../todo.interface.ts';
 
+const KEYCODE_ENTER = 13;
+
 export default class TodoComponent extends React.Component<TodoComponentProps, TodoComponentState> {
 
     constructor(props) {
@@ -19,7 +21,10 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
         this.setState({valid: true, description: event.target.value});
     }
 
-    addTodo() {
+    addTodo(event) {
+        if (event && event.keyCode !== KEYCODE_ENTER) {
+            return;
+        }
         if (!this.state.description.length || this.state.description.length > 50) {
             this.setState({valid: false});
         } else {
@@ -34,7 +39,7 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
         });
 
         return(
-            <div className="container">
+            <div className="container" onKeyDown={this.addTodo.bind(this)}>
                 <div className="row">
                     <div className="col-sm-12">
                         <h2 className="text-center">What do you need to do?</h2>
