@@ -6,10 +6,10 @@ Check out the [Demo](http://tomastrajan.github.io/react-typescript-webpack/)
 ## Features
 This is a simple Todos application with some sweet extra features like authentication (using Auth0) and persistence (separate node.js backend application - check out the gihub repository of [todos-server](https://github.com/tomastrajan/todos-server))
 
-* **authentication** - [Auth0](https://auth0.com/) 3rd party API with Google+ social login
-* **persistence** - separate node.js backend application for authenticated users
-* **guest mode** - local storage pesistence
 * **FLUXless architecture** - simple one way data flow (just components, services, models)
+* **guest mode** - local storage pesistence
+* **persistence** - separate node.js backend application for authenticated users
+* **authentication** - [Auth0](https://auth0.com/) 3rd party API with Google+ social login
 * **material design** - material-ui, react-bootstrap, material bootswatch theme
 * **[continuous deployment](https://medium.com/@tomastrajan/continuous-deployment-of-client-side-apps-with-github-pages-travis-ci-10e9d641a889)** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
 
@@ -33,10 +33,11 @@ or
 > As far as I can tell (and as others have said) - FB seems to have missed the boat here. Their FLUX diagram is what I understood proper MVC to be...
 
 
-That means Flux in fact is a implementation of MVC and the main point (or constraint) is that the data should flow **ALWAYS** in one direction.
-The basic gist of it is that the Flux is enforcing this direction by decoupling of all logic calls
-(in `Actions`) by event bus (`Dispatcher`) from their execution (in `Stores`).
-As it turned out, this is easily achievable just by using services (check
+That means Flux in fact is a implementation of MVC and the main point (or constraint) is
+that the data should **ALWAYS** flow just in one direction. Flux implementations usually
+achieve that by decoupling of all logic calls (in `Actions`) by event bus (`Dispatcher`)
+from their execution (in `Stores`). As it turned out, this is easily achievable just
+by using services (check
 [todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts) and
 [todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts) to get an idea).
 
@@ -44,14 +45,14 @@ As it turned out, this is easily achievable just by using services (check
 ### Architecture
 The main concept at the core of all Flux implementations is that the data must always flow
 in one direction. This is a worthy cause and it brings a lot of benefits to the table
-during development and maintenance of projects. With such an architecure project state
+during development and maintenance of projects. With such an architecture project state
 becomes predictable, easier to reason about and debug.
 
 ##### Event bus vs explicit calls
-As everything `events` come with a trade-off. They enforce decoupling by their very nature
-but the cost is that it is usually much harder to track and debug event-heavy code
-using development tools. Yes you get complete history of what happened but
- you lose ability to easily comprehend scope of ll the logic that will be executed as
+As everything `events` come with a trade-off. They enforce decoupling of application logic
+by their very nature. This comes with a cost that it is usually much harder to track and
+debug event-heavy code. Yes you get complete history of what happened but
+ you lose ability to easily comprehend scope of all the logic that will be executed as
  a result of producing such event.
 
 ## UI
