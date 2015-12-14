@@ -17,12 +17,19 @@ This is a simple Todos application with some sweet extra features like authentic
 
 ![Components](/assets/screenshot1.png?raw=true "React Typescript Webpack FLUXless Example")
 
+
+> **Disclaimer**: I think Flux architecture is a great idea but it is always good to
+understand the bigger picture and related trade-offs...
+
+
 ## Motivation for FLUXless architecture
 In software development, we should strive to attain deeper understanding of
-concepts instead of falling for the  everchanging `HypeOfTheMonth`. I was a bit
-skeptical about the latest Flux hype and all the different libraries it spawned
-during relatively short period of time. Reasearching the topic brought fruit
-pretty quickly. In my oppinion, this thread on [reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/)
+concepts instead of falling for the  ever-changing _HypeOfThe~~Month~~Year_. I was
+[interested](https://medium.com/@tomastrajan/introduction-to-react-and-flux-6043d63610cd)
+and a bit skeptical about the latest Flux hype and all the different
+libraries it spawned during relatively short period of time. Researching the topic
+brought fruit pretty quickly. In my opinion, this thread on
+[reddit](https://www.reddit.com/r/programming/comments/25nrb5/facebook_mvc_does_not_scale_use_flux_instead/)
 contains lot of insight into the situation.
 
 
@@ -33,13 +40,16 @@ or
 > As far as I can tell (and as others have said) - FB seems to have missed the boat here. Their FLUX diagram is what I understood proper MVC to be...
 
 
-That means Flux in fact is a implementation of MVC and the main point (or constraint) is
-that the data should **ALWAYS** flow just in one direction. Flux implementations usually
-achieve that by decoupling of all logic calls (in `Actions`) by event bus (`Dispatcher`)
-from their execution (in `Stores`). As it turned out, this is easily achievable just
-by using services (check
-[todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts) and
-[todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts) to get an idea).
+These and other similar comments are hinting that Flux is a specific implementation of MVC
+and that the main point (or constraint) is that the data should **ALWAYS** flow just in one direction.
+Flux implementations usually achieve that by decoupling of all logic calls (in `Actions`)
+by event bus (`Dispatcher`) from their execution (in `Stores`). As it turned out,
+one way data flow is also easily achievable by using more familiar architecture with
+React components, services and models (check
+[todo.container.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/ui/todo.container.tsx),
+[todo.service.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.service.ts),
+[todo.model.ts](https://github.com/tomastrajan/react-typescript-webpack/blob/master/src/todo/todo.model.ts)
+to get an idea).
 
 
 ### Architecture
@@ -49,18 +59,66 @@ during development and maintenance of projects. With such an architecture projec
 becomes predictable, easier to reason about and debug.
 
 ##### Event bus vs explicit calls
-As everything `events` come with a trade-off. They enforce decoupling of application logic
-by their very nature. This comes with a cost that it is usually much harder to track and
-debug event-heavy code. Yes you get complete history of what happened but
- you lose ability to easily comprehend scope of all the logic that will be executed as
- a result of producing such event.
+Flux decouples logic by implementing event bus with the `Dispatcher`
+being responsible for dispatching `Actions` generated events to all the `Stores`.
+As everything, `events` too come with a trade-off. They enforce decoupling of application logic
+by their very nature. The cost of that is that it is usually much harder to track and
+debug event-heavy code. Yes you can store and get complete history of what happened but
+you lose ability to easily comprehend scope of all the logic that will be executed as
+a result of producing single event. It might be matter of subjective preference but if
+you need to orchestrate business logic though various domains, nothing beats explicit
+calls.
 
 ## UI
 #### React components
-UI is implemented using React components...
+In this example we are using two types of React components with different set
+of responsibilities.
 
 #### Container components
-Container components are React components which hold state and register listeners to models to call `setState` on model update. They implement logic which calls coresponding domain services and app.services Their template consist purely of other React components (no layout or functionality). State and functionality is then passed to child components through props.
+Container components are fulfilling couple of responsibilities:
+* hold current application state
+* register model change listeners to get notified on model data change
+* retrieve actual data on model change
+* pass state to children children components through their props
+* implement calls to domain  & application services
+
+Template of container components consist purely of other React components
+(no own layout or functionality).
+
+```typescript
+export default class TodoContainer extends React.Component<{}, {}> {
+
+    constructor(props) {
+        super(props);
+        this.state = this._buildState();
+    }
+
+    componentDidMount() { TodoModel.observable.addListener(this._onModelUpdate.bind(this)); }
+    componentWillUnmount() { TodoModel.observable.removeListener(this._onModelUpdate.bind(this)); }
+
+    _onModelUpdate() {
+        this.setState(this._buildState());
+    }
+
+    _buildState() {
+        return {
+            todos: TodoModel.getTodos()
+        }
+    }
+
+    addTodo(description: string) { /* ... */ }
+
+    // simplified for brevity
+
+    render() {
+        return(
+            <TodoComponent todos={this.state.todos} addTodo={this.addTodo.bind(this)} />
+        );
+    }
+
+}
+
+```
 
 #### Simple components
 Simple components receive all their data and actions through properties (from parent component).
