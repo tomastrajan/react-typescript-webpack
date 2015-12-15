@@ -22,7 +22,7 @@ export default class TodoComponent extends React.Component<TodoComponentProps, T
     }
 
     addTodo(event) {
-        if (event && event.keyCode !== KEYCODE_ENTER) {
+        if (event && event.keyCode !== KEYCODE_ENTER && event.type !== 'click') {
             return;
         }
         if (!this.state.description.length || this.state.description.length > 50) {
