@@ -1,5 +1,5 @@
-import * as AuthService from '../auth/auth.service';
-import * as AuthModel from '../auth/auth.model';
+import * as AuthService from './auth.service';
+import * as AuthModel from './auth.model';
 import * as TodoService from '../todo/todo.service';
 
 
