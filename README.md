@@ -15,6 +15,10 @@ and persistence (separate node.js backend application - check out the gihub repo
 * **material design** - material-ui, react-bootstrap, material bootswatch theme
 * **[continuous deployment](https://medium.com/@tomastrajan/continuous-deployment-of-client-side-apps-with-github-pages-travis-ci-10e9d641a889)** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
 
+#### How to run the project
+1. `npm i`
+2. `npm start`
+
 ## Preview 
 
 ![Components](/assets/screenshot1.png?raw=true "React Typescript Webpack FLUXless Example")
@@ -68,9 +72,10 @@ As everything, `events` too come with a trade-off. They enforce decoupling of ap
 by their very nature. The cost of that is that it is usually much harder to track and
 debug event-heavy code. Yes you can store complete event history to see what happened
 in your application but you lose ability to easily comprehend scope of all the logic
-that will be executed as a result of producing single event. It might be matter of subjective
-preference but if you need to orchestrate business logic though various domains,
-nothing beats explicit calls.
+that will be executed as a result of producing single event. Another problem is
+assuring that the dependent operations happen in correct order (`waitsFor` from original
+Facebook's Flux example'). It might be matter of subjective preference but if you
+need to orchestrate complex business flows through various domains, nothing beats explicit calls.
 
 ## UI
 #### React components
@@ -83,7 +88,7 @@ Container components are handling following tasks:
 * register model change listeners to get notified on model data change
 * retrieve actual data on model change
 * pass state to children components through their props
-* implement calls to domain & application services
+* implement calls to domain & application services (and pass them to children)
 
 Template of container components consist purely of other React components
 (no own layout or functionality).
@@ -96,13 +101,16 @@ export default class TodoContainer extends React.Component<{}, {}> {
         this.state = this._buildState();
     }
 
+    // register model data change listeners
     componentDidMount() { TodoModel.observable.addListener(this._onModelUpdate.bind(this)); }
     componentWillUnmount() { TodoModel.observable.removeListener(this._onModelUpdate.bind(this)); }
 
+    // handle model data change
     _onModelUpdate() {
         this.setState(this._buildState());
     }
 
+    // helper function for retrieving state on model data change
     _buildState() {
         return {
             todos: TodoModel.getTodos()
@@ -126,8 +134,8 @@ export default class TodoContainer extends React.Component<{}, {}> {
 #### Simple components
 Simple components receive all their data and functionality through props (from parent component).
 They can implement their own local `state` and logic for handling of internal UI interactions
-but all mutations to application state stored in `models`` can only be achieved by executing
-functions received from parent.
+but all mutations to the application state stored in `models` can only be achieved by executing
+functions received from parent through props (which are in turn calling domain and application services).
 
 
 ## Logic
@@ -135,15 +143,16 @@ functions received from parent.
 As applications grow larger it is usually a good idea to split functionality into
 multiple folders (packages) by their respective concern. In the perfect world these
 concerns would be perfectly orthogonal so we didn't have to implement any cross
-domain orchestration. Unfortunately, that's rarely the case and we usually have to
-deal with cross-domain coordination when implementing our business flows.
+domain orchestration or cross-cutting concerns. Unfortunately, that's rarely
+the case and we usually have to deal with cross-domain coordination when
+implementing our business flows.
 
 #### Application services
-Application services are used to implement cross-domain orchestration. They are the
+Application services (`~Actions`) are used to implement cross-domain orchestration. They are the
 only type of service which are allowed to `import` services from other domain packages.
-They only execute functionality of imported domain services and contain no logic on their own.
+They only execute functionality of imported domain services and contain no business logic on their own.
 
-#### Services
+#### (Domain) Services
 Services (~`Actions` / `Stores`) are used to implement domain specific business and
 infrastructure logic. Services of particular domain can `import` only other services
 belonging to that domain. All inter-domain orchestration must be implemented using
@@ -158,7 +167,18 @@ This implementation enables **one way data flow**.
 Model has full control of the (possibly custom) notification behaviour, while component
 knows what kind of data it needs to retrieve from model after being notified.
 
+All `get` data functions of the model create copy of the retrieved data so that
+they prevent direct mutation of model's data through shared reference.
+Also, while it is theoretically possible for component to directly call
+other model's methods, as guideline only `listener` and `get` methods are allowed.
 
-### How to run the project
-1. `npm i`
-2. `npm start`
+## Contributing
+Don't hesitate to fork / submit PR with enhancements if you found this example useful.
+
+#### TODO
+* tslint
+* unit tests
+* integration tests
+* add notifications / alerts for operation's outcomes
+* cleanup of styling (select just one component library)
+* add form validation messages
