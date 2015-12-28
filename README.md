@@ -1,5 +1,5 @@
 # React Typescript Webpack *FLUXless* Todo Example [![Build Status](https://travis-ci.org/tomastrajan/react-typescript-webpack.svg)](https://travis-ci.org/tomastrajan/react-typescript-webpack)
-Seed for building React app using *FLUXless* architecture, Typescript and Webpack build
+Seed for building React apps using *FLUXless* architecture, Typescript and Webpack build
 
 Check out the [Demo](http://tomastrajan.github.io/react-typescript-webpack/)
 
@@ -14,6 +14,7 @@ and persistence (separate node.js backend application - check out the gihub repo
 * **authentication** - [Auth0](https://auth0.com/) 3rd party API with Google+ social login
 * **material design** - material-ui, react-bootstrap, material bootswatch theme
 * **[continuous deployment](https://medium.com/@tomastrajan/continuous-deployment-of-client-side-apps-with-github-pages-travis-ci-10e9d641a889)** - travis ci build + deployment to gh-pages branch fo the repository (GitHub Pages)
+* **webpack build** - with react hot loader
 
 #### How to run the project
 1. `npm i`
@@ -76,6 +77,8 @@ that will be executed as a result of producing single event. Another problem is
 assuring that the dependent operations happen in correct order (`waitsFor` from original
 Facebook's Flux example'). It might be matter of subjective preference but if you
 need to orchestrate complex business flows through various domains, nothing beats explicit calls.
+
+![Architecture](/assets/architecture.png?raw=true "FLUXless Architecture Diagram")
 
 ## UI
 #### React components
