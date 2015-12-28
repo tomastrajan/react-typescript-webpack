@@ -78,7 +78,7 @@ assuring that the dependent operations happen in correct order (`waitsFor` from 
 Facebook's Flux example'). It might be matter of subjective preference but if you
 need to orchestrate complex business flows through various domains, nothing beats explicit calls.
 
-![Architecture](/assets/architecture.png?raw=true "FLUXless Architecture Diagram")
+![Architecture](/assets/architecture.jpg?raw=true "FLUXless Architecture Diagram")
 
 ## UI
 #### React components
