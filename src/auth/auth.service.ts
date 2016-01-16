@@ -7,13 +7,13 @@ import * as interceptor from './auth.interceptor';
 
 import { Profile } from './auth.interface';
 
-const Lock = new Auth0Lock('A9xnMR5yCNlOs0HbLB17OeOUZpCYnG4G', 'tomastrajan.eu.auth0.com');
-const LOGOUT_URL = 'https://tomastrajan.eu.auth0.com/v2/logout?federated';
+const lock: any = new Auth0Lock('A9xnMR5yCNlOs0HbLB17OeOUZpCYnG4G', 'tomastrajan.eu.auth0.com');
+const LOGOUT_URL: string = 'https://tomastrajan.eu.auth0.com/v2/logout?federated';
 
 export function login() {
-    return new Promise((resolve, reject) => {
-        let options = {authParams: { scope: 'openid profile' }};
-        Lock.show(options, function(err, profile, token) {
+    return new Promise((resolve: any, reject: any) => {
+        let options: any = {authParams: { scope: 'openid profile' }};
+        lock.show(options, function(err: any, profile: Profile, token: any) {
             if (err) {
                 console.log(err);
                 return reject(err);
@@ -38,11 +38,11 @@ export function logout() {
 }
 
 export function init() {
-    return new Promise((resolve, reject) => {
-        let token = localStorage.getItem('id_token');
+    return new Promise((resolve: any, reject: any) => {
+        let token: string = localStorage.getItem('id_token');
         if (token) {
             interceptor.registerAuthTokenInterceptor(token);
-            Lock.getProfile(token, function (err, profile) {
+            lock.getProfile(token, function (err: any, profile: Profile) {
                 if (err) {
                     console.log(err);
                     return reject(err);

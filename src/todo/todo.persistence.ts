@@ -2,8 +2,8 @@ import * as axios from 'axios';
 
 import { Todo } from './todo.interface';
 
-const SERVER = 'https://todos-server.herokuapp.com';
-const RESOURCE = '/todos';
+const SERVER: string = 'https://todos-server.herokuapp.com';
+const RESOURCE: string = '/todos';
 
 export function findAll() {
     return axios.get<Todo[]>(SERVER + RESOURCE).
@@ -22,6 +22,6 @@ export function remove(id: string) {
     return axios.delete(SERVER + RESOURCE + '/' + id);
 }
 
-function _unwrapResponse(response): Todo[] {
-    return response.data
+function _unwrapResponse(response: any): Todo[] {
+    return response.data;
 }

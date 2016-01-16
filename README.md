@@ -179,9 +179,9 @@ other model's methods, as guideline only `listener` and `get` methods are allowe
 Don't hesitate to fork / submit PR with enhancements if you found this example useful.
 
 #### TODO
-* tslint
-* unit tests
-* integration tests
-* add notifications / alerts for operation's outcomes
-* cleanup of styling (select just one component library)
-* add form validation messages
+- [x] tslint
+- [] unit tests
+- [] integration tests
+- [] add notifications / alerts for operation's outcomes
+- [] cleanup of styling (select just one component library)
+- [] add form validation messages

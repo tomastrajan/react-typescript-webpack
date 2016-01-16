@@ -1,16 +1,15 @@
 import * as _ from 'lodash';
-import * as uuid from 'uuid';
 
-import observableFactory from '../common/observable-factory';
+import observableFactory, { Observable } from '../common/observable-factory';
 
 import { Todo } from './todo.interface';
 
 let todos: Todo[] = [];
 
-export const observable = observableFactory();
+export const observable: Observable = observableFactory();
 
 export function getTodo(id: string): Todo {
-    return _.cloneDeep(_.find(todos, t => t.id === id));
+    return _.cloneDeep(_.find(todos, (t: Todo) => t.id === id));
 }
 
 export function getTodos(): Todo[] {
@@ -18,11 +17,11 @@ export function getTodos(): Todo[] {
 }
 
 export function getDoneTodos(): number {
-    return _.reduce(todos, (sum, t) => { return t.done ? ++sum : sum; }, 0);
+    return _.reduce(todos, (sum: number, t: Todo) => { return t.done ? ++sum : sum; }, 0);
 }
 
 export function getPendingTodos(): number {
-    return _.reduce(todos, (sum, t) => { return !t.done ? ++sum : sum; }, 0);
+    return _.reduce(todos, (sum: number, t: Todo) => { return !t.done ? ++sum : sum; }, 0);
 }
 
 export function setTodos(newTodos: Todo[]) {
@@ -36,7 +35,7 @@ export function addTodo(todo: Todo) {
 }
 
 export function replaceTodo(todo: Todo) {
-    _.forEach(todos, (t, index) => {
+    _.forEach(todos, (t: Todo, index: number) => {
         if (t.id === todo.id) {
             todos[index] = todo;
         }
@@ -45,7 +44,6 @@ export function replaceTodo(todo: Todo) {
 }
 
 export function removeTodo(id: string) {
-    _.remove(todos, t => t.id === id);
+    _.remove(todos, (t: Todo) => t.id === id);
     observable.notifyAll();
 }
-

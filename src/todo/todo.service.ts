@@ -12,16 +12,16 @@ const defaultTodos: Todo[] = [
     {id: uuid.v4(), description: 'Check sources on Github', done: false}
 ];
 
-let isAuthenticated = false;
+let isAuthenticated: boolean = false;
 
-export function init(isAuth) {
+export function init(isAuth: boolean) {
     isAuthenticated = isAuth;
     if (isAuthenticated) {
         persistence.findAll()
             .then(_sortTodosByCreatedAt)
             .then(model.setTodos);
     } else {
-        let todosLs = persistenceLs.getTodos();
+        let todosLs: Todo[] = persistenceLs.getTodos();
         model.setTodos(todosLs.length ? todosLs : defaultTodos);
     }
 }
@@ -45,7 +45,7 @@ export function createTodo(description: string) {
 }
 
 export function toggleTodo(id: string) {
-    let todo = model.getTodo(id);
+    let todo: Todo = model.getTodo(id);
     todo.done = !todo.done;
 
     if (isAuthenticated) {
@@ -60,7 +60,7 @@ export function toggleTodo(id: string) {
 }
 
 export function editTodo(id: string, description: string) {
-    let todo = model.getTodo(id);
+    let todo: Todo = model.getTodo(id);
     todo.description = description;
 
     if (isAuthenticated) {
@@ -87,23 +87,23 @@ export function removeTodo(id: string) {
 }
 
 export function removeDoneTodos() {
-    let todos = model.getTodos();
+    let todos: Todo[] = model.getTodos();
     if (isAuthenticated) {
-        let promises = [];
-        _.forEach(todos, t => t.done ? promises.push(persistence.remove(t.id)) : undefined);
+        let promises: Promise<any>[] = [];
+        _.forEach(todos, (t: Todo) => t.done ? promises.push(persistence.remove(t.id)) : undefined);
         Promise.all(promises)
             .then(persistence.findAll)
             .then(_sortTodosByCreatedAt)
             .then(model.setTodos);
     } else {
-        _.forEach(todos, t => t.done ? model.removeTodo(t.id) : undefined);
+        _.forEach(todos, (t: Todo) => t.done ? model.removeTodo(t.id) : undefined);
         persistenceLs.setTodos(model.getTodos());
     }
 }
 
 
-function _sortTodosByCreatedAt(todos) {
-    return todos.sort((a, b) => {
+function _sortTodosByCreatedAt(todos: Todo[]) {
+    return todos.sort((a: Todo, b: Todo) => {
         if (a.createdAt > b.createdAt) {
             return 1;
         }

@@ -1,12 +1,12 @@
 import * as _ from 'lodash';
 
-import observableFactory from '../common/observable-factory';
+import observableFactory, { Observable } from '../common/observable-factory';
 
 import { Profile } from './auth.interface';
 
 let userProfile: Profile;
 
-export const observable = observableFactory();
+export const observable: Observable = observableFactory();
 
 export function isAuthenticated(): boolean {
     return !!userProfile;
