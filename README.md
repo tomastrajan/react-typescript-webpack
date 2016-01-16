@@ -180,8 +180,8 @@ Don't hesitate to fork / submit PR with enhancements if you found this example u
 
 #### TODO
 - [x] tslint
-- [] unit tests
-- [] integration tests
-- [] add notifications / alerts for operation's outcomes
-- [] cleanup of styling (select just one component library)
-- [] add form validation messages
+- [ ] unit tests
+- [ ] integration tests
+- [ ] add notifications / alerts for operation's outcomes
+- [ ] cleanup of styling (select just one component library)
+- [ ] add form validation messages
