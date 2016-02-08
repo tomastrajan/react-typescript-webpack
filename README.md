@@ -17,8 +17,15 @@ and persistence (separate node.js backend application - check out the gihub repo
 * **webpack build** - with react hot loader
 
 #### How to run the project
-1. `npm i`
-2. `npm start`
+1. `npm i` - install npm dependencies
+2. `npm start` - run webpack build in `DEV` mode, open `http://localhost:8081` in browser
+
+#### Other build targets
+
+- `npm run build` - run build and store artifacts in `build` folder
+- `npm run dist` - run production build and stores artifacts in `dist` folder
+- `npm run ci` - build for Travis CI
+- `npm run test` - run lint & test
 
 ## Preview 
 
