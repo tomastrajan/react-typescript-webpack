@@ -51,7 +51,7 @@ var DEFAULT_PARAMS = {
 var PARAMS_PER_TARGET = {
 
     DEV: {
-        devtool: 'inline-source-map',
+        devtool: 'cheap-source-map',
         output: {
             filename: '[name].js'
         },
