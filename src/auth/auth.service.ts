@@ -8,7 +8,8 @@ import * as interceptor from './auth.interceptor';
 import { Profile } from './auth.interface';
 
 const lock: any = new Auth0Lock('A9xnMR5yCNlOs0HbLB17OeOUZpCYnG4G', 'tomastrajan.eu.auth0.com');
-const LOGOUT_URL: string = 'https://tomastrajan.eu.auth0.com/v2/logout?federated';
+const LOGOUT_URL: string = 'https://tomastrajan.eu.auth0.com/v2/logout';
+
 
 export function login() {
     return new Promise((resolve: any, reject: any) => {
